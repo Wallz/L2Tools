@@ -1,0 +1,3128 @@
+Classes:
+	FArchive
+	FArray
+	FBitReader
+	FBitWriter
+	FBitWriterMark
+	FBlowFish
+	FBox
+	FCoords
+	FCriticalSection
+	FDependency
+	FFileStream
+	FFrame
+	FGenerationInfo
+	FGlobalMath
+	FINT64
+	FInterpCurve
+	FLabelEntry
+	FMatrix
+	FMemCache
+	FMemMark
+	FMemStack
+	FMemStackFrame
+	FMemStackStats
+	FName
+	FOutputDevice
+	FPackageFileSummary
+	FPackageInfo
+	FParamMap
+	FQuat
+	FRotator
+	FSingletonBase
+	FSphere
+	FString
+	FVariance
+	FVector
+	L2Configuration
+	L2Exception
+	L2ParamStack
+	L2ThreadBase
+	L2ThreadStats
+	L2ThreadUtil
+	L2UserHardWareInformation
+	UArrayProperty
+	UBoolProperty
+	UByteProperty
+	UClass
+	UClassProperty
+	UCommandlet
+	UConst
+	UDelegateProperty
+	UEnum
+	UExporter
+	UFactory
+	UField
+	UFixedArrayProperty
+	UFloatProperty
+	UFunction
+	UIntProperty
+	ULanguage
+	ULinker
+	UMapProperty
+	UNameProperty
+	UObject
+	UObjectExporterT3D
+	UObjectProperty
+	UPackage
+	UPackageMap
+	UParamStack
+	UProperty
+	UPtrProperty
+	UState
+	UStrProperty
+	UStruct
+	UStructProperty
+	USubsystem
+	UTextBuffer
+	UTextBufferFactory
+
+Interfaces:
+FArchive
+	public: FArchive& ByteOrderSerialize(void*,INT);
+	public: FArchive();
+	public: FArchive(FArchive const&);
+	public: INT ContainsCode();
+	public: INT ForClient();
+	public: INT ForEdit();
+	public: INT ForServer();
+	public: INT IsError();
+	public: INT IsGC();
+	public: INT IsLoading();
+	public: INT IsNet();
+	public: INT IsPersistent();
+	public: INT IsSaving();
+	public: INT IsTrans();
+	public: INT LicenseeVer();
+	public: INT NetVer();
+	public: INT Ver();
+	public: virtual FCriticalSection* GetCriticalSection();
+	public: virtual INT AtEnd();
+	public: virtual INT AtStopper();
+	public: virtual INT Close();
+	public: virtual INT GetCurrentEncryptVersion();
+	public: virtual INT GetError();
+	public: virtual INT MapName(FName*);
+	public: virtual INT MapObject(UObject*);
+	public: virtual INT Tell();
+	public: virtual INT TotalSize();
+	public: virtual void AttachLazyLoader(FLazyLoader*);
+	public: virtual void AttachRoughLoader(FRoughLoader*);
+	public: virtual void CountBytes(DWORD,DWORD);
+	public: virtual void DetachLazyLoader(FLazyLoader*);
+	public: virtual void DetachRoughLoader(FRoughLoader*);
+	public: virtual void Flush();
+	public: virtual void Precache(INT);
+	public: virtual void Preload(UObject*);
+	public: virtual void Seek(INT);
+	public: virtual void Serialize(void*,INT);
+	public: virtual void SerializeBits(void*,INT);
+	public: virtual void SerializeInt(DWORD&,DWORD);
+	public: virtual void SetStopper(INT);
+	public: virtual ~FArchive();
+	public: void ThisContainsCode();
+FArray
+	protected: FArray(INT,INT);
+	protected: void Realloc(INT);
+	public: FArray();
+	public: FArray(enum ENoInit);
+	public: INT Add(INT,INT);
+	public: INT AddCompact(INT,INT);
+	public: INT AddZeroed(INT,INT);
+	public: INT IsEmpty()const;
+	public: INT IsValidIndex(INT)const;
+	public: INT Num()const;
+	public: void CountBytes(FArchive&,INT);
+	public: void Empty(INT,INT);
+	public: void Insert(INT,INT,INT);
+	public: void InsertZeroed(INT,INT,INT);
+	public: void Remove(INT,INT,INT);
+	public: void Shrink(INT);
+	public: void Swap(FArray&);
+	public: void const* GetData()const;
+	public: void* GetData();
+	public: ~FArray();
+FBitReader
+	public: DWORD ReadInt(DWORD);
+	public: FBitReader(struct FBitReader const&);
+	public: FBitReader(unsigned char*,INT);
+	public: INT GetNumBits();
+	public: INT GetNumBytes();
+	public: INT GetPosBits();
+	public: unsigned char ReadBit();
+	public: unsigned char* GetData();
+	public: virtual INT AtEnd();
+	public: virtual void Serialize(void*,INT);
+	public: virtual void SerializeBits(void*,INT);
+	public: virtual void SerializeInt(DWORD&,DWORD);
+	public: virtual ~FBitReader();
+	public: void SetData(struct FBitReader&,INT);
+	public: void SetOverflowed();
+FBitWriter
+	public: FBitWriter(INT);
+	public: FBitWriter(struct FBitWriter const&);
+	public: INT GetNumBits();
+	public: INT GetNumBytes();
+	public: unsigned char* GetData();
+	public: virtual void Serialize(void*,INT);
+	public: virtual void SerializeBits(void*,INT);
+	public: virtual void SerializeInt(DWORD&,DWORD);
+	public: virtual ~FBitWriter();
+	public: void SetOverflowed();
+	public: void WriteBit(unsigned char);
+	public: void WriteInt(DWORD,DWORD);
+FBitWriterMark
+	public: FBitWriterMark();
+	public: FBitWriterMark(struct FBitWriter&);
+	public: INT GetNumBits();
+	public: void Pop(struct FBitWriter&);
+FBlowFish
+	public: FBlowFish();
+	public: short InitializeBlowfish(unsigned char* const,short);
+	public: void BlowfishDecrypt(unsigned char*,INT);
+	public: void BlowfishEncrypt(unsigned char*,INT);
+	public: void Blowfish_decipher(DWORD*,DWORD*);
+	public: void Blowfish_encipher(DWORD*,DWORD*);
+	public: void ResetMemberVariable();
+FBox
+	public: FBox ExpandBy(FLOAT)const;
+	public: FBox TransformBy(FCoords const&)const;
+	public: FBox TransformBy(FMatrix const&)const;
+	public: FBox();
+	public: FBox(FVector const&,FVector const&);
+	public: FBox(FVector const*,INT);
+	public: FBox(INT);
+	public: FVector GetCenter()const;
+	public: FVector GetExtent()const;
+	public: FVector const& GetExtrema(INT)const;
+	public: FVector& GetExtrema(INT);
+	public: bool Intersect(FBox const&)const;
+	public: bool IsInside(FVector const&)const;
+	public: void GetCenterAndExtents(FVector&,FVector&)const;
+	public: void Init();
+FCoords
+	public: FCoords ApplyPivot(FCoords const&)const;
+	public: FCoords ApplyPivotWithoutScale(FCoords const&)const;
+	public: FCoords Inverse()const;
+	public: FCoords MirrorByPlane(FPlane const&)const;
+	public: FCoords MirrorByVector(FVector const&)const;
+	public: FCoords PivotInverse()const;
+	public: FCoords Transpose()const;
+	public: FCoords();
+	public: FCoords(FVector const&);
+	public: FCoords(FVector const&,FVector const&,FVector const&,FVector const&);
+	public: FMatrix Matrix()const;
+	public: FRotator OrthoRotation()const;
+FCriticalSection
+	public: FCriticalSection();
+	public: void Lock();
+	public: void Unlock();
+	public: ~FCriticalSection();
+FDependency
+	public: FDependency();
+	public: FDependency(UClass*,INT);
+	public: INT IsUpToDate();
+FFileStream
+	private: FFileStream();
+	private: ~FFileStream();
+	public: INT Create(INT,wchar_t const*);
+	public: INT CreateStream(wchar_t const*,INT,INT,void*,enum EFileStreamType,void*);
+	public: INT Destroy(INT);
+	public: INT QueryStream(INT,INT&);
+	public: INT Read(INT,INT);
+	public: static FFileStream* __cdecl Init(INT);
+	public: static void __cdecl Destroy();
+	public: void DestroyStream(INT,INT);
+	public: void RequestChunks(INT,INT,void*);
+FFrame
+	public: FFrame(UObject*);
+	public: FFrame(UObject*,UStruct*,INT,void*);
+	public: FFrame(struct FFrame const&);
+	public: FLOAT ReadFloat();
+	public: FName ReadName();
+	public: INT ReadInt();
+	public: INT ReadWord();
+	public: UObject* ReadObject();
+	public: virtual void Serialize(wchar_t const*,enum EName);
+	public: void Step(UObject*,void* const);
+FGenerationInfo
+	public: FGenerationInfo(INT,INT);
+FGlobalMath
+	public: FGlobalMath();
+	public: FLOAT CosFloat(FLOAT);
+	public: FLOAT CosTab(INT);
+	public: FLOAT SinFloat(FLOAT);
+	public: FLOAT SinTab(INT);
+	public: FLOAT Sqrt(INT);
+FINT64
+	public: FINT64();
+	public: FINT64(INT);
+	public: FINT64(INT,INT);
+	public: FINT64(__INT64);
+	public: __INT64 GetValue()const;
+FInterpCurve
+	public: FInterpCurve();
+	public: FInterpCurve(FInterpCurve const&);
+	public: FLOAT Eval(FLOAT);
+	public: void AddPoINT(FLOAT,FLOAT);
+	public: ~FInterpCurve();
+FLabelEntry
+	public: FLabelEntry(FName,INT);
+FMatrix
+	public: FCoords Coords();
+	public: FLOAT Determinant()const;
+	public: FMatrix Inverse();
+	public: FMatrix Transpose();
+	public: FMatrix TransposeAdjoINT()const;
+	public: FMatrix();
+	public: FMatrix(FPlane,FPlane,FPlane,FPlane);
+	public: FMatrix(FVector const&,FQuat const&);
+	public: FPlane TransformFPlane(FPlane const&)const;
+	public: FPlane TransformNormal(FVector const&)const;
+	public: FRotator Rotator();
+	public: FVector TransformFVector(FVector const&)const;
+	public: void SetIdentity();
+	public: ~FMatrix();
+FMemCache
+	private: FCacheItem* FlushItem(FCacheItem*,INT);
+	private: FCacheItem* MergeWithNext(FCacheItem*);
+	private: void ConditionalCheckState();
+	private: void CreateNewFreeSpace(unsigned char*,unsigned char*,FCacheItem*,FCacheItem*,INT);
+	private: void Unhash(unsigned __INT64);
+	public: DWORD GHash(DWORD);
+	public: FCacheItem* First();
+	public: FCacheItem* Last();
+	public: FCacheItem* Next(FCacheItem*);
+	public: FMemCache();
+	public: INT Exec(wchar_t const*,FOutputDevice&);
+	public: INT GetTime();
+	public: unsigned char* Create(unsigned __INT64,FCacheItem*&,INT,INT,INT);
+	public: unsigned char* Get(unsigned __INT64,FCacheItem*&,INT);
+	public: void CheckState();
+	public: void Exit(INT);
+	public: void Flush(unsigned __INT64,DWORD,INT);
+	public: void Init(INT,INT,void*,INT);
+	public: void Status(wchar_t*);
+	public: void Tick();
+FMemMark
+	public: FMemMark();
+	public: FMemMark(FMemStack&);
+	public: void Pop();
+FMemStack
+	private: FMemStackFrame& GetThreadSafeMemStack();
+	public: FMemStack();
+	public: INT GetByteCount();
+	public: unsigned char* PushBytes(INT,INT);
+	public: void Exit();
+	public: void Init(INT);
+	public: ~FMemStack();
+FMemStackFrame
+	public: INT GetByteCount();
+	public: static void __cdecl StaticExit();
+	public: unsigned char* AllocateNewChunk(INT);
+	public: unsigned char* PushBytes(INT,INT);
+	public: void Exit();
+	public: void FreeChunks(struct FTaggedMemory*);
+	public: void Init(INT);
+	public: ~FMemStackFrame();
+	wchar_t const* const `public: void Exit()'::`3'::__FUNC_NAME__;
+	wchar_t const* const `public: void Init(INT)'::`3'::__FUNC_NAME__;
+FMemStackStats
+	public: FMemStackStats();
+FName
+	public: DWORD GetFlags()const;
+	public: FName();
+	public: FName(enum EName);
+	public: FName(wchar_t const*,enum EFindName);
+	public: INT GetIndex()const;
+	public: INT IsValid()const;
+	public: static INT __cdecl GetInitialized();
+	public: static INT __cdecl GetMaxNames();
+	public: static INT __cdecl SafeSuppressed(enum EName);
+	public: static struct FNameEntry* __cdecl GetEntry(INT);
+	public: static void __cdecl DeleteEntry(INT);
+	public: static void __cdecl DisplayHash(FOutputDevice&);
+	public: static void __cdecl Hardcode(struct FNameEntry*);
+	public: static void __cdecl StaticExit();
+	public: static void __cdecl StaticInit();
+	public: static wchar_t const* __cdecl SafeString(enum EName);
+	public: void ClearFlags(DWORD)const;
+	public: void SetFlags(DWORD)const;
+FOutputDevice
+	public: FOutputDevice();
+	public: FOutputDevice(FOutputDevice const&);
+	public: virtual void Flush();
+	public: virtual void Release();
+	public: void Log(FString const&);
+	public: void Log(enum EName,FString const&);
+	public: void Log(enum EName,wchar_t const*);
+	public: void Log(wchar_t const*);
+	public: void __cdecl Logf(enum EName,wchar_t const*,...);
+	public: void __cdecl Logf(wchar_t const*,...);
+	public: void __cdecl Logf2(enum EName,wchar_t const*&,...);
+	public: void __cdecl Logf2(wchar_t const*&,...);
+FPackageFileSummary
+	public: FPackageFileSummary();
+	public: FPackageFileSummary(struct FPackageFileSummary const&);
+	public: INT GetFileVersion()const;
+	public: INT GetFileVersionLicensee()const;
+	public: void SetFileVersions(INT,INT);
+	public: ~FPackageFileSummary();
+FPackageInfo
+	public: FPackageInfo(FPackageInfo const&);
+	public: FPackageInfo(ULinkerLoad*);
+	public: ~FPackageInfo();
+FParamMap
+	private: TMap<FName,FVariance>& GetMapPrivate()const;
+	public: FParamMap();
+	public: FParamMap(FParamMap const&);
+	public: INT GetValue(FName const&,FINT64&)const;
+	public: INT GetValue(FName const&,FLOAT&)const;
+	public: INT GetValue(FName const&,FString&)const;
+	public: INT GetValue(FName const&,INT&)const;
+	public: INT GetValue(FName const&,__INT64&)const;
+	public: TMap<FName,FVariance> const& GetMap()const;
+	public: void AddParam(FName const&,FVariance const&);
+	public: ~FParamMap();
+FQuat
+	public: FQuat AngAxisToFQuat();
+	public: FQuat FQuatToAngAxis();
+	public: FQuat();
+	public: FQuat(FLOAT,FLOAT,FLOAT,FLOAT);
+	public: FQuat(FMatrix const&);
+	public: FVector RotateVector(FVector);
+	public: INT Normalize();
+FRotator
+	public: FQuat Quaternion()const;
+	public: FRotator Add(INT,INT,INT);
+	public: FRotator AddBounded(INT,INT,INT);
+	public: FRotator Clamp();
+	public: FRotator ClampPos();
+	public: FRotator GridSnap(FRotator const&);
+	public: FRotator Reduce()const;
+	public: FRotator& Normalize();
+	public: FRotator();
+	public: FRotator(FQuat const&);
+	public: FRotator(INT,INT,INT);
+	public: FVector Vector();
+	public: INT IsZero()const;
+	public: void GetWindingAndRemainder(FRotator&,FRotator&)const;
+	public: void MakeShortestRoute();
+	wchar_t const* const `public: FRotator Clamp()'::`3'::__FUNC_NAME__;
+	wchar_t const* const `public: FRotator ClampPos()'::`3'::__FUNC_NAME__;
+FSingletonBase
+	protected: FSingletonBase();
+	protected: virtual ~FSingletonBase();
+	public: FSingletonBase(FSingletonBase const&);
+FSphere
+	public: FLOAT GetRadius();
+	public: FSphere TransformBy(FMatrix const&)const;
+	public: FSphere();
+	public: FSphere(FSphere const&);
+	public: FSphere(FVector const&,FLOAT);
+	public: FSphere(FVector const*,INT);
+	public: FSphere(INT);
+	public: FVector& GetCenter();
+FString
+	private: FString(INT,wchar_t const*);
+	public: FString Caps()const;
+	public: FString Left(INT)const;
+	public: FString LeftChop(INT)const;
+	public: FString LeftPad(INT);
+	public: FString Locs()const;
+	public: FString Mid(INT,INT)const;
+	public: FString Reverse();
+	public: FString Right(INT)const;
+	public: FString RightPad(INT);
+	public: FString Substitute(FString const&,FString const&,INT);
+	public: FString();
+	public: FString(DWORD,INT);
+	public: FString(FLOAT,INT,INT,INT);
+	public: FString(FString const&);
+	public: FString(INT,INT);
+	public: FString(char const*);
+	public: FString(double,INT,INT,INT);
+	public: FString(enum ENoInit);
+	public: FString(short,INT);
+	public: FString(signed char,INT);
+	public: FString(unsigned char,INT);
+	public: FString(unsigned short,INT);
+	public: FString(wchar_t const*);
+	public: INT InStr(FString const&,INT)const;
+	public: INT InStr(wchar_t const*,INT)const;
+	public: INT IsWhiteSpace()const;
+	public: INT Len()const;
+	public: INT Split(FString const&,FString*,FString*,INT)const;
+	public: static FString __cdecl Chr(wchar_t);
+	public: static FString __cdecl FormatAsNumber(INT);
+	public: static FString __cdecl PrINTf(wchar_t const*,...);
+	public: void Complement();
+	public: void Delete(INT,INT);
+	public: void Empty();
+	public: void Shrink();
+	public: ~FString();
+	wchar_t const* const `public: FString Reverse()'::`3'::__FUNC_NAME__;
+	wchar_t const* const `public: FString Substitute(FString const&,FString const&,INT)'::`3'::__FUNC_NAME__;
+	wchar_t const* const `public: void Complement()'::`3'::__FUNC_NAME__;
+FVariance
+	public: FLOAT GetFLOAT()const;
+	public: FString const* GetFStringPtr()const;
+	public: FVariance(FLOAT);
+	public: FVariance(FString const&);
+	public: FVariance(FVariance const&);
+	public: FVariance(INT);
+	public: FVariance(__INT64);
+	public: FVariance(wchar_t const*);
+	public: INT GetINT()const;
+	public: __INT64 GetINT64()const;
+	public: enum EValueType GetType()const;
+	public: ~FVariance();
+FVector
+	public: FLOAT GetAbsMax()const;
+	public: FLOAT GetMax()const;
+	public: FLOAT GetMin()const;
+	public: FLOAT Size()const;
+	public: FLOAT Size2D()const;
+	public: FLOAT SizeSquared()const;
+	public: FLOAT SizeSquared2D()const;
+	public: FLOAT& Component(INT);
+	public: FRotator Rotation();
+	public: FVector BoundToCube(FLOAT);
+	public: FVector GetNonParallel();
+	public: FVector GetNormalized();
+	public: FVector GridSnap(FVector const&);
+	public: FVector MirrorByPlane(FPlane const&)const;
+	public: FVector MirrorByVector(FVector const&)const;
+	public: FVector PivotTransform(FCoords const&)const;
+	public: FVector Projection()const;
+	public: FVector RotateAngleAxis(INT,FVector const&)const;
+	public: FVector SafeDiv(FVector&);
+	public: FVector SafeNormal()const;
+	public: FVector TransformPoINTBy(FCoords const&)const;
+	public: FVector TransformVectorBy(FCoords const&)const;
+	public: FVector TransformVectorByTranspose(FCoords const&)const;
+	public: FVector UnsafeNormal()const;
+	public: FVector();
+	public: FVector(FLOAT);
+	public: FVector(FLOAT,FLOAT,FLOAT);
+	public: INT Booleanize();
+	public: INT IsLeft(FVector const&,FVector const&);
+	public: INT IsNearlyZero()const;
+	public: INT IsUniform();
+	public: INT IsZero()const;
+	public: INT Normalize();
+	public: void AddBounded(FVector const&,FLOAT);
+	public: void FindBestAxisVectors(FVector&,FVector&);
+	public: void Set(FLOAT,FLOAT,FLOAT);
+L2Configuration
+	private: L2Configuration();
+	public: FLOAT GetActorCR()const;
+	public: FLOAT GetActualActorCR()const;
+	public: FLOAT GetActualPawnCR()const;
+	public: FLOAT GetActualStaticMeshCR()const;
+	public: FLOAT GetActualStaticMeshLodCR()const;
+	public: FLOAT GetDynamicEmitterCR()const;
+	public: FLOAT GetPawnCR()const;
+	public: FLOAT GetSSAO_BlurDepthDifference()const;
+	public: FLOAT GetSSAO_BlurIntensity()const;
+	public: FLOAT GetSSAO_BlurNormalDifference()const;
+	public: FLOAT GetSSAO_DepthDifference()const;
+	public: FLOAT GetSSAO_FadeFront()const;
+	public: FLOAT GetSSAO_MaxIntensity()const;
+	public: FLOAT GetSSAO_NoiseScale()const;
+	public: FLOAT GetSSAO_SampleDistance()const;
+	public: FLOAT GetSSAO_Strength()const;
+	public: FLOAT GetStaticMeshCR()const;
+	public: FLOAT GetStaticMeshLodCR()const;
+	public: INT Exec(wchar_t const*);
+	public: INT GetDepth()const;
+	public: INT GetDepthOfField()const;
+	public: INT GetDepthShadow()const;
+	public: INT GetEdgeDetect()const;
+	public: INT GetFrostSecureModule()const;
+	public: INT GetNormal()const;
+	public: INT GetReplayFileVersion()const;
+	public: INT GetSSAO()const;
+	public: INT GetSSAOF()const;
+	public: INT GetSlowShader()const;
+	public: L2Configuration(L2Configuration const&);
+	public: virtual ~L2Configuration();
+	public: void SetActorCR(FLOAT);
+	public: void SetDepth(INT);
+	public: void SetDepthOfField(INT);
+	public: void SetDepthShadow(INT);
+	public: void SetDynamicEmitterCR(FLOAT);
+	public: void SetEdgeDetect(INT);
+	public: void SetFrostSecureModule(INT);
+	public: void SetNormal(INT);
+	public: void SetPawnCR(FLOAT);
+	public: void SetReplayFileVersion(INT);
+	public: void SetSSAO(INT);
+	public: void SetSSAOF(INT);
+	public: void SetSSAO_BlurDepthDifference(FLOAT);
+	public: void SetSSAO_BlurIntensity(FLOAT);
+	public: void SetSSAO_BlurNormalDifference(FLOAT);
+	public: void SetSSAO_DepthDifference(FLOAT);
+	public: void SetSSAO_FadeFront(FLOAT);
+	public: void SetSSAO_MaxIntensity(FLOAT);
+	public: void SetSSAO_NoiseScale(FLOAT);
+	public: void SetSSAO_SampleDistance(FLOAT);
+	public: void SetSSAO_Strength(FLOAT);
+	public: void SetSlowShader(INT);
+	public: void SetStaticMeshCR(FLOAT);
+	public: void SetStaticMeshLodCR(FLOAT);
+L2Exception
+	public: L2Exception(unsigned INT,struct _EXCEPTION_POINTERS const*);
+	public: void ConvertCodeToString(wchar_t*)const;
+	public: void* GetExceptionAdress()const;
+L2ParamStack
+	public: INT GetBufferSize();
+	public: INT PushBack(__INT64);
+	public: INT PushBack(wchar_t*);
+	public: L2ParamStack(INT);
+	public: L2ParamStack(L2ParamStack&);
+	public: __INT64 Top();
+	public: void Clear();
+	public: void Restart();
+	public: ~L2ParamStack();
+L2ThreadBase
+	public: L2ThreadBase(L2ThreadBase const&);
+	public: L2ThreadBase(wchar_t*);
+	public: virtual DWORD GetID();
+	public: virtual INT IsRunning();
+	public: virtual void* GetEventHandle();
+	public: virtual void* GetHandle();
+	public: virtual ~L2ThreadBase();
+L2ThreadStats
+	public: L2ThreadStats();
+	public: void Clear();
+	public: void LockEnd();
+	public: void LockStart();
+	public: void SleepEnd();
+	public: void SleepStart();
+L2ThreadUtil
+	public: DWORD GetCurrentThreadID()const;
+	public: DWORD GetThreadID(enum L2ThreadFunction);
+	public: INT GetCurrentThreadIndex()const;
+	public: INT GetThreadCounter();
+	public: INT IsCurrentThread(enum L2ThreadFunction);
+	public: INT KillAllThread();
+	public: L2ThreadBase* GetThread(enum L2ThreadFunction);
+	public: L2ThreadStats* GetCurrentThreadStats();
+	public: L2ThreadStats* GetThreadStats(INT);
+	public: L2ThreadUtil();
+	public: L2ThreadUtil(L2ThreadUtil const&);
+	public: virtual ~L2ThreadUtil();
+	public: void AddEtcThread();
+	public: void AddMainThread();
+	public: void AddThread(enum L2ThreadFunction,L2ThreadBase*);
+	public: void DeleteThreadSafeParam(void*);
+	public: void StaticInit();
+L2UserHardWareInformation
+	private: INT CheckIni();
+	private: L2UserHardWareInformation();
+	private: struct L2HDD_SpaceCheck GetDiskSpace(FString);
+	private: virtual ~L2UserHardWareInformation();
+	private: void SaveIni(FString);
+	public: DWORD GetCDRomDriveType();
+	public: DWORD GetCPUCoreCount();
+	public: DWORD GetCPUSpeed();
+	public: DWORD GetDXRevision();
+	public: DWORD GetDXVersion();
+	public: DWORD GetVideoMemory();
+	public: DWORD GetWindowsBuildNumber();
+	public: DWORD GetWindowsMajorVersion();
+	public: DWORD GetWindowsMinorVersion();
+	public: DWORD GetWindowsPlatformId();
+	public: INT GetCPUCacheLineSize();
+	public: INT GetCPUCacheSize();
+	public: INT GetMultiVGA();
+	public: INT GetPageMemory();
+	public: INT GetPhysMemory();
+	public: INT GetSendHardWare();
+	public: INT GetVirtualMemory();
+	public: INT GetWindowHeight();
+	public: INT GetWindowWidth();
+	public: L2UserHardWareInformation(L2UserHardWareInformation const&);
+	public: struct L2Option* GetOption();
+	public: struct L2VGA_Check const& GetL2VGA_Check();
+	public: void INIHardWareCheck();
+	public: void InitHDDInfo();
+	public: void LoadOptionINI();
+	public: void SendHardWareOK();
+	public: void SetCDRomDriveName(FString);
+	public: void SetCPUBrandString(FString);
+	public: void SetCPUCacheLineSize(INT);
+	public: void SetCPUCacheSize(INT);
+	public: void SetCPUCoreCount(DWORD);
+	public: void SetCPUSpeed(DWORD);
+	public: void SetChatWndHeight(INT);
+	public: void SetDXRevision(DWORD);
+	public: void SetDXVersion(DWORD);
+	public: void SetMSNUse(INT);
+	public: void SetMacAddress(unsigned char*);
+	public: void SetMachineCPU(FString);
+	public: void SetPageMemory(INT);
+	public: void SetPhysMemory(INT);
+	public: void SetUseJoystick(INT);
+	public: void SetVGAInfo(DWORD,FString,union _LARGE_INTEGER,INT);
+	public: void SetVideoMemory(DWORD);
+	public: void SetVirtualMemory(INT);
+	public: void SetWindowHeight(INT);
+	public: void SetWindowWidth(INT);
+	public: void SetWindowsBuildNumber(DWORD);
+	public: void SetWindowsInfo(FString);
+	public: void SetWindowsMajorVersion(DWORD);
+	public: void SetWindowsMinorVersion(DWORD);
+	public: void SetWindowsPlatformId(DWORD);
+	public: void SetWndPos(FString,INT,INT);
+	public: void SetWndSize(FString,INT,INT);
+	public: wchar_t const* GetCDRomDriveName();
+	public: wchar_t const* GetCPUBrandString();
+	public: wchar_t const* GetMacAddress();
+	public: wchar_t const* GetMachineCPU();
+	public: wchar_t const* GetVgaDriverVersion();
+	public: wchar_t const* GetVgaName();
+	public: wchar_t const* GetWindowsInfo();
+UArrayProperty
+	public: UArrayProperty();
+	public: UArrayProperty(UArrayProperty const&);
+	public: UArrayProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void AddCppProperty(UProperty*);
+	public: virtual void CleanupDestroyed(unsigned char*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void DestroyValue(void*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UArrayProperty();
+UBoolProperty
+	public: UBoolProperty();
+	public: UBoolProperty(UBoolProperty const&);
+	public: UBoolProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UBoolProperty();
+UByteProperty
+	public: UByteProperty();
+	public: UByteProperty(UByteProperty const&);
+	public: UByteProperty(enum ECppProperty,INT,wchar_t const*,DWORD,UEnum*);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UByteProperty();
+UClass
+	private: INT IsA(UClass*)const;
+	public: AActor* GetDefaultActor();
+	public: INT HasNativesToExport(UObject*);
+	public: UClass();
+	public: UClass(UClass const&);
+	public: UClass(UClass*);
+	public: UClass(enum ENativeConstructor,DWORD,DWORD,UClass*,UClass*,FGuid,wchar_t const*,wchar_t const*,wchar_t const*,DWORD,void (__cdecl*)(void*),void (UObject::*)());
+	public: UClass(enum EStaticConstructor,DWORD,DWORD,FGuid,wchar_t const*,wchar_t const*,wchar_t const*,DWORD,void (__cdecl*)(void*),void (UObject::*)());
+	public: UClass* GetSuperClass()const;
+	public: ULevelObject* GetDefaultLevelObject();
+	public: UObject* GetDefaultObject();
+	public: UPackage* GetOuterUPackage()const;
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT MergeBools();
+	public: virtual UStruct* GetInheritanceSuper();
+	public: virtual void Bind();
+	public: virtual void Destroy();
+	public: virtual void Link(FArchive&,INT);
+	public: virtual void PostLoad();
+	public: virtual void Register();
+	public: virtual void Serialize(FArchive&);
+	public: virtual wchar_t* GetNameCPP();
+	public: virtual ~UClass();
+	public: void AddDependency(UClass*,INT);
+	wchar_t const* const `public: void AddDependency(UClass*,INT)'::`3'::__FUNC_NAME__;
+UClassProperty
+	public: UClassProperty();
+	public: UClassProperty(UClassProperty const&);
+	public: UClassProperty(enum ECppProperty,INT,wchar_t const*,DWORD,UClass*);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual unsigned char GetID()const;
+	public: virtual void Serialize(FArchive&);
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UClassProperty();
+UCommandlet
+	public: INT eventMain(FString const&);
+	public: UCommandlet();
+	public: UCommandlet(UCommandlet const&);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT DynamicReloadCheck(INT);
+	public: virtual INT Main(wchar_t const*);
+	public: virtual ~UCommandlet();
+	public: void execMain(struct FFrame&,void* const);
+UConst
+	protected: UConst();
+	public: UConst(UConst const&);
+	public: UConst(UConst*,wchar_t const*);
+	public: UConst* GetSuperConst()const;
+	public: UStruct* GetOuterUStruct()const;
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UConst();
+UDelegateProperty
+	public: UDelegateProperty();
+	public: UDelegateProperty(UDelegateProperty const&);
+	public: UDelegateProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CleanupDestroyed(unsigned char*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UDelegateProperty();
+UEnum
+	protected: UEnum();
+	public: UEnum(UEnum const&);
+	public: UEnum(UEnum*);
+	public: UEnum* GetSuperEnum()const;
+	public: UStruct* GetOuterUStruct()const;
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UEnum();
+UExporter
+	public: UExporter();
+	public: UExporter(UExporter const&);
+	public: static INT __cdecl ExportToFile(UObject*,UExporter*,wchar_t const*,INT,INT);
+	public: static UClass* __cdecl StaticClass();
+	public: static UExporter* __cdecl FindExporter(UObject*,wchar_t const*);
+	public: static void __cdecl ExportToArchive(UObject*,UExporter*,FArchive&,wchar_t const*);
+	public: static void __cdecl ExportToOutputDevice(UObject*,UExporter*,FOutputDevice&,wchar_t const*,INT);
+	public: virtual INT ExportBinary(UObject*,wchar_t const*,FArchive&,FFeedbackContext*);
+	public: virtual INT ExportText(UObject*,wchar_t const*,FOutputDevice&,FFeedbackContext*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UExporter();
+	public: void StaticConstructor();
+UFactory
+	public: UFactory();
+	public: UFactory(UFactory const&);
+	public: static UClass* __cdecl StaticClass();
+	public: static UObject* __cdecl StaticImportObject(ULevel*,UClass*,UObject*,FName,DWORD,wchar_t const*,UObject*,UFactory*,wchar_t const*,FFeedbackContext*);
+	public: virtual UObject* FactoryCreateBinary(UClass*,UObject*,FName,DWORD,UObject*,wchar_t const*,unsigned char const*&,unsigned char const*,FFeedbackContext*);
+	public: virtual UObject* FactoryCreateNew(UClass*,UObject*,FName,DWORD,UObject*,FFeedbackContext*);
+	public: virtual UObject* FactoryCreateText(ULevel*,UClass*,UObject*,FName,DWORD,UObject*,wchar_t const*,wchar_t const*&,wchar_t const*,FFeedbackContext*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UFactory();
+	public: void StaticConstructor();
+UField
+	protected: UField();
+	public: UField(UField const&);
+	public: UField(UField*);
+	public: UField(enum ENativeConstructor,UClass*,wchar_t const*,wchar_t const*,DWORD,UField*);
+	public: UField(enum EStaticConstructor,wchar_t const*,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: virtual INT GetPropertiesSize();
+	public: virtual INT MergeBools();
+	public: virtual UClass* GetOwnerClass();
+	public: virtual void AddCppProperty(UProperty*);
+	public: virtual void Bind();
+	public: virtual void PostLoad();
+	public: virtual void Register();
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UField();
+UFixedArrayProperty
+	public: UFixedArrayProperty();
+	public: UFixedArrayProperty(UFixedArrayProperty const&);
+	public: UFixedArrayProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CleanupDestroyed(unsigned char*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void DestroyValue(void*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UFixedArrayProperty();
+	public: void AddCppProperty(UProperty*,INT);
+UFloatProperty
+	public: UFloatProperty();
+	public: UFloatProperty(UFloatProperty const&);
+	public: UFloatProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UFloatProperty();
+UFunction
+	protected: UFunction();
+	public: UFunction(UFunction const&);
+	public: UFunction(UFunction*);
+	public: UFunction* GetSuperFunction()const;
+	public: UProperty* GetReturnProperty();
+	public: UState* GetOuterUState()const;
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT MergeBools();
+	public: virtual UStruct* GetInheritanceSuper();
+	public: virtual void Bind();
+	public: virtual void Link(FArchive&,INT);
+	public: virtual void PostLoad();
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UFunction();
+UIntProperty
+	public: UIntProperty();
+	public: UIntProperty(UIntProperty const&);
+	public: UIntProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UIntProperty();
+ULanguage
+	protected: ULanguage();
+	public: ULanguage(ULanguage const&);
+	public: static UClass* __cdecl StaticClass();
+	public: virtual ~ULanguage();
+ULinker
+	protected: ULinker();
+	public: FString GetExportFullName(INT,wchar_t const*);
+	public: FString GetImportFullName(INT);
+	public: FString QuickMD5();
+	public: ULinker(ULinker const&);
+	public: ULinker(UObject*);
+	public: ULinker(UObject*,wchar_t const*);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT LinksToCode();
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~ULinker();
+UMapProperty
+	public: UMapProperty();
+	public: UMapProperty(UMapProperty const&);
+	public: UMapProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void DestroyValue(void*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UMapProperty();
+UNameProperty
+	public: UNameProperty();
+	public: UNameProperty(UNameProperty const&);
+	public: UNameProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UNameProperty();
+UObject
+	protected: static FName __cdecl MakeUniqueObjectName(UObject*,UClass*);
+	protected: static INT __cdecl ResolveName(UObject*&,wchar_t const*&,INT,INT);
+	protected: static ULinkerLoad* __cdecl GetLoader(INT);
+	protected: static void (__cdecl* LoadingProgress)();
+	protected: static void __cdecl CacheDrivers(INT);
+	protected: static void __cdecl DeleteAllHashObjectBuffer();
+	protected: static void __cdecl PurgeGarbage();
+	protected: static void __cdecl SafeLoadError(DWORD,wchar_t const*,wchar_t const*,...);
+	protected: void AddObject(INT);
+	protected: void HashObject();
+	protected: void HashObjectBuffer();
+	protected: void SetLinker(ULinkerLoad*,INT);
+	protected: void UnhashObject(INT);
+	protected: void UnhashObjectBuffer(INT);
+	public: DWORD GetCacheIndex()const;
+	public: DWORD GetFlags()const;
+	public: FName const GetFName()const;
+	public: INT ConditionalDestroy();
+	public: INT FindArrayProperty(FString,FArray**,INT*);
+	public: INT FindBoolProperty(FString,INT*);
+	public: INT FindFNameProperty(FString,FName*);
+	public: INT FindFloatProperty(FString,FLOAT*);
+	public: INT FindIntProperty(FString,INT*);
+	public: INT FindObjectProperty(FString,UObject**);
+	public: INT FindStructProperty(FString,UStruct**);
+	public: INT GetIndex()const;
+	public: INT GetLinkerIndex();
+	public: INT IsA(UClass*)const;
+	public: INT IsIn(UObject*)const;
+	public: INT IsProbing(FName);
+	public: INT IsValid();
+	public: UClass* GetClass()const;
+	public: UField* FindObjectField(FName,INT);
+	public: UFunction* FindFunction(FName,INT);
+	public: UFunction* FindFunctionChecked(FName,INT);
+	public: ULinkerLoad* GetLinker();
+	public: ULinkerLoad* L2GetLoader(INT);
+	public: UObject();
+	public: UObject(UObject const&);
+	public: UObject(enum EInPlaceConstructor,UClass*,UObject*,FName,DWORD);
+	public: UObject(enum ENativeConstructor,UClass*,wchar_t const*,wchar_t const*,DWORD);
+	public: UObject(enum EStaticConstructor,wchar_t const*,wchar_t const*,DWORD);
+	public: UObject* GetOuter()const;
+	public: UObject* GetTopOuter()const;
+	public: UObject* LinkerCreate(ULinkerLoad*,UClass*,FName,DWORD,INT);
+	public: UState* FindState(FName);
+	public: static INT __cdecl AttemptDelete(UObject*&,DWORD,INT);
+	public: static INT __cdecl CheckSafePackage(wchar_t const*);
+	public: static INT __cdecl GetImportCount();
+	public: static INT __cdecl GetInitialized();
+	public: static INT __cdecl GetObjectHash(FName,INT);
+	public: static INT __cdecl IsReferenced(UObject*&,DWORD,INT);
+	public: static INT __cdecl ObjectChecked(UClass*,UObject*,wchar_t const*,wchar_t const*,DWORD,UPackageMap*);
+	public: static INT __cdecl SavePackage(UObject*,UObject*,DWORD,wchar_t const*,FOutputDevice*,ULinkerLoad*,INT);
+	public: static INT __cdecl StaticExec(wchar_t const*,FOutputDevice&);
+	public: static UClass* __cdecl StaticClass();
+	public: static UClass* __cdecl StaticLoadClass(UClass*,UObject*,wchar_t const*,wchar_t const*,DWORD,UPackageMap*);
+	public: static UClass* __cdecl StaticMemLoadClass(UClass*,UObject*,wchar_t const*,void*,INT,DWORD,UPackageMap*);
+	public: static ULinkerLoad* __cdecl GetMemPackageLinker(UObject*,DWORD,UPackageMap*,FGuid*,void*,INT);
+	public: static ULinkerLoad* __cdecl GetPackageLinker(UObject*,wchar_t const*,DWORD,UPackageMap*,FGuid*);
+	public: static UObject* __cdecl GetIndexedObject(INT);
+	public: static UObject* __cdecl LoadPackage(UObject*,wchar_t const*,DWORD,INT);
+	public: static UObject* __cdecl StaticAllocateObject(UClass*,UObject*,FName,DWORD,UObject*,FOutputDevice*,UObject*,UObject*);
+	public: static UObject* __cdecl StaticConstructObject(UClass*,UObject*,FName,DWORD,UObject*,FOutputDevice*,UObject*);
+	public: static UObject* __cdecl StaticFindObject(UClass*,UObject*,wchar_t const*,INT,INT);
+	public: static UObject* __cdecl StaticFindObjectChecked(UClass*,UObject*,wchar_t const*,INT);
+	public: static UObject* __cdecl StaticLoadObject(UClass*,UObject*,FName const&,wchar_t const*,DWORD,UPackageMap*);
+	public: static UObject* __cdecl StaticLoadObject(UClass*,UObject*,wchar_t const*,wchar_t const*,DWORD,UPackageMap*);
+	public: static UObject* __cdecl StaticMemLoadObject(UClass*,UObject*,wchar_t const*,void*,INT,DWORD,UPackageMap*);
+	public: static UPackage* __cdecl CreatePackage(UObject*,wchar_t const*);
+	public: static UPackage* __cdecl GetTransientPackage();
+	public: static void __cdecl BeginLoad();
+	public: static void __cdecl BindPackage(UPackage*);
+	public: static void __cdecl CallLoadingProgress();
+	public: static void __cdecl CollectGarbage(DWORD);
+	public: static void __cdecl DeleteLoadingProgress();
+	public: static void __cdecl DissociateImports();
+	public: static void __cdecl EndLoad();
+	public: static void __cdecl ExitProperties(unsigned char*,UClass*);
+	public: static void __cdecl ExportProperties(FOutputDevice&,UClass*,unsigned char*,INT,UClass*,unsigned char*);
+	public: static void __cdecl FinishThreadLoad();
+	public: static void __cdecl GlobalSetProperty(wchar_t const*,UClass*,UProperty*,INT,INT);
+	public: static void __cdecl InitProperties(unsigned char*,INT,UClass*,unsigned char*,INT,UObject*,UObject*);
+	public: static void __cdecl InternalConstructor(void*);
+	public: static void __cdecl ProcessRegistrants();
+	public: static void __cdecl ResetConfig(UClass*);
+	public: static void __cdecl ResetLoaders(UObject*,INT,INT);
+	public: static void __cdecl SWBeginLoad();
+	public: static void __cdecl SWEndLoad();
+	public: static void __cdecl SerializeRootSet(FArchive&,DWORD,DWORD);
+	public: static void __cdecl SetImportCount(INT);
+	public: static void __cdecl SetLanguage(wchar_t const*);
+	public: static void __cdecl SetLoadingProgress(void (__cdecl*)());
+	public: static void __cdecl StaticExit();
+	public: static void __cdecl StaticInit();
+	public: static void __cdecl StaticShutdownAfterError();
+	public: static void __cdecl StaticTick();
+	public: static void __cdecl VerifyLinker(ULinkerLoad*);
+	public: static wchar_t const* __cdecl GetLanguage();
+	public: static wchar_t const* __cdecl StaticConfigName();
+	public: struct FStateFrame* GetStateFrame();
+	public: virtual DWORD __stdcall AddRef();
+	public: virtual DWORD __stdcall QueryInterface(FGuid const&,void**);
+	public: virtual DWORD __stdcall Release();
+	public: virtual INT GotoLabel(FName);
+	public: virtual INT IsLoaded();
+	public: virtual INT IsPendingKill();
+	public: virtual INT ProcessRemoteFunction(UFunction*,void*,struct FFrame*);
+	public: virtual INT ScriptConsoleExec(wchar_t const*,FOutputDevice&,UObject*);
+	public: virtual enum EGotoState GotoState(FName);
+	public: virtual void CallFunction(struct FFrame&,void* const,UFunction*);
+	public: virtual void ClearL2Game();
+	public: virtual void Destroy();
+	public: virtual void InitExecution();
+	public: virtual void LanguageChange();
+	public: virtual void Modify();
+	public: virtual void NetDirty(UProperty*);
+	public: virtual void OnEvent(FString const&,FString const&);
+	public: virtual void PostEditChange();
+	public: virtual void PostLoad();
+	public: virtual void ProcessDelegate(FName,struct FScriptDelegate*,void*,void*);
+	public: virtual void ProcessEvent(UFunction*,void*,void*);
+	public: virtual void ProcessState(FLOAT);
+	public: virtual void Register();
+	public: virtual void Rename(wchar_t const*,UObject*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void ShutdownAfterError();
+	public: virtual ~UObject();
+	public: void AddToRoot();
+	public: void ClearFlags(DWORD);
+	public: void ConditionalPostLoad();
+	public: void ConditionalRegister();
+	public: void ConditionalShutdownAfterError();
+	public: void InitClassDefaultObject(UClass*,INT);
+	public: void LoadConfig(INT,UClass*,wchar_t const*);
+	public: void LoadLocalized();
+	public: void ParseParms(wchar_t const*,INT);
+	public: void ProcessInternal(struct FFrame&,void* const);
+	public: void RemoveFromRoot();
+	public: void SaveConfig(DWORD,wchar_t const*);
+	public: void SetClass(UClass*);
+	public: void SetFlags(DWORD);
+	public: void SetOuterNULL();
+	public: void StaticConstructor();
+	public: void eventBeginState();
+	public: void eventEndState();
+	public: void execAbs(struct FFrame&,void* const);
+	public: void execAcos(struct FFrame&,void* const);
+	public: void execAddAdd_Byte(struct FFrame&,void* const);
+	public: void execAddAdd_Int(struct FFrame&,void* const);
+	public: void execAddAdd_PreByte(struct FFrame&,void* const);
+	public: void execAddAdd_PreInt(struct FFrame&,void* const);
+	public: void execAddEqual_ByteByte(struct FFrame&,void* const);
+	public: void execAddEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execAddEqual_INT64INT64(struct FFrame&,void* const);
+	public: void execAddEqual_IntInt(struct FFrame&,void* const);
+	public: void execAddEqual_RotatorRotator(struct FFrame&,void* const);
+	public: void execAddEqual_VectorVector(struct FFrame&,void* const);
+	public: void execAddParamFloat(struct FFrame&,void* const);
+	public: void execAddParamINT64(struct FFrame&,void* const);
+	public: void execAddParamInt(struct FFrame&,void* const);
+	public: void execAddParamString(struct FFrame&,void* const);
+	public: void execAdd_FloatFloat(struct FFrame&,void* const);
+	public: void execAdd_INT64INT64(struct FFrame&,void* const);
+	public: void execAdd_IntInt(struct FFrame&,void* const);
+	public: void execAdd_RotatorRotator(struct FFrame&,void* const);
+	public: void execAdd_VectorVector(struct FFrame&,void* const);
+	public: void execAndAnd_BoolBool(struct FFrame&,void* const);
+	public: void execAnd_IntInt(struct FFrame&,void* const);
+	public: void execArrayElement(struct FFrame&,void* const);
+	public: void execAsc(struct FFrame&,void* const);
+	public: void execAsin(struct FFrame&,void* const);
+	public: void execAssert(struct FFrame&,void* const);
+	public: void execAt_StringString(struct FFrame&,void* const);
+	public: void execAtan(struct FFrame&,void* const);
+	public: void execBoolToByte(struct FFrame&,void* const);
+	public: void execBoolToFloat(struct FFrame&,void* const);
+	public: void execBoolToINT64(struct FFrame&,void* const);
+	public: void execBoolToInt(struct FFrame&,void* const);
+	public: void execBoolToString(struct FFrame&,void* const);
+	public: void execBoolVariable(struct FFrame&,void* const);
+	public: void execByteConst(struct FFrame&,void* const);
+	public: void execByteToBool(struct FFrame&,void* const);
+	public: void execByteToFloat(struct FFrame&,void* const);
+	public: void execByteToINT64(struct FFrame&,void* const);
+	public: void execByteToInt(struct FFrame&,void* const);
+	public: void execByteToString(struct FFrame&,void* const);
+	public: void execCaps(struct FFrame&,void* const);
+	public: void execCase(struct FFrame&,void* const);
+	public: void execChr(struct FFrame&,void* const);
+	public: void execClamp(struct FFrame&,void* const);
+	public: void execClassContext(struct FFrame&,void* const);
+	public: void execClassIsChildOf(struct FFrame&,void* const);
+	public: void execClockwiseFrom_IntInt(struct FFrame&,void* const);
+	public: void execComplementEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execComplementEqual_StringString(struct FFrame&,void* const);
+	public: void execComplement_PreInt(struct FFrame&,void* const);
+	public: void execConcat_StringString(struct FFrame&,void* const);
+	public: void execContext(struct FFrame&,void* const);
+	public: void execCos(struct FFrame&,void* const);
+	public: void execCross_VectorVector(struct FFrame&,void* const);
+	public: void execDebugInfo(struct FFrame&,void* const);
+	public: void execDefaultVariable(struct FFrame&,void* const);
+	public: void execDelegateFunction(struct FFrame&,void* const);
+	public: void execDelegateProperty(struct FFrame&,void* const);
+	public: void execDisable(struct FFrame&,void* const);
+	public: void execDivideEqual_ByteByte(struct FFrame&,void* const);
+	public: void execDivideEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execDivideEqual_IntFloat(struct FFrame&,void* const);
+	public: void execDivideEqual_RotatorFloat(struct FFrame&,void* const);
+	public: void execDivideEqual_VectorFloat(struct FFrame&,void* const);
+	public: void execDivide_FloatFloat(struct FFrame&,void* const);
+	public: void execDivide_INT64INT64(struct FFrame&,void* const);
+	public: void execDivide_IntInt(struct FFrame&,void* const);
+	public: void execDivide_RotatorFloat(struct FFrame&,void* const);
+	public: void execDivide_VectorFloat(struct FFrame&,void* const);
+	public: void execDot_VectorVector(struct FFrame&,void* const);
+	public: void execDynArrayElement(struct FFrame&,void* const);
+	public: void execDynArrayInsert(struct FFrame&,void* const);
+	public: void execDynArrayLength(struct FFrame&,void* const);
+	public: void execDynArrayRemove(struct FFrame&,void* const);
+	public: void execDynamicCast(struct FFrame&,void* const);
+	public: void execDynamicLoadObject(struct FFrame&,void* const);
+	public: void execEatString(struct FFrame&,void* const);
+	public: void execEnable(struct FFrame&,void* const);
+	public: void execEndFunctionParms(struct FFrame&,void* const);
+	public: void execEqualEqual_BoolBool(struct FFrame&,void* const);
+	public: void execEqualEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execEqualEqual_INT64INT64(struct FFrame&,void* const);
+	public: void execEqualEqual_IntInt(struct FFrame&,void* const);
+	public: void execEqualEqual_NameName(struct FFrame&,void* const);
+	public: void execEqualEqual_ObjectObject(struct FFrame&,void* const);
+	public: void execEqualEqual_RotatorRotator(struct FFrame&,void* const);
+	public: void execEqualEqual_StringString(struct FFrame&,void* const);
+	public: void execEqualEqual_VectorVector(struct FFrame&,void* const);
+	public: void execExp(struct FFrame&,void* const);
+	public: void execFClamp(struct FFrame&,void* const);
+	public: void execFMax(struct FFrame&,void* const);
+	public: void execFMin(struct FFrame&,void* const);
+	public: void execFRand(struct FFrame&,void* const);
+	public: void execFalse(struct FFrame&,void* const);
+	public: void execFinalFunction(struct FFrame&,void* const);
+	public: void execFindObject(struct FFrame&,void* const);
+	public: void execFloatConst(struct FFrame&,void* const);
+	public: void execFloatToBool(struct FFrame&,void* const);
+	public: void execFloatToByte(struct FFrame&,void* const);
+	public: void execFloatToINT64(struct FFrame&,void* const);
+	public: void execFloatToInt(struct FFrame&,void* const);
+	public: void execFloatToString(struct FFrame&,void* const);
+	public: void execGetAxes(struct FFrame&,void* const);
+	public: void execGetEnum(struct FFrame&,void* const);
+	public: void execGetParamFloat(struct FFrame&,void* const);
+	public: void execGetParamINT64(struct FFrame&,void* const);
+	public: void execGetParamInt(struct FFrame&,void* const);
+	public: void execGetParamString(struct FFrame&,void* const);
+	public: void execGetPropertyText(struct FFrame&,void* const);
+	public: void execGetStateName(struct FFrame&,void* const);
+	public: void execGetUnAxes(struct FFrame&,void* const);
+	public: void execGlobalFunction(struct FFrame&,void* const);
+	public: void execGotoLabel(struct FFrame&,void* const);
+	public: void execGotoState(struct FFrame&,void* const);
+	public: void execGreaterEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execGreaterEqual_INT64INT64(struct FFrame&,void* const);
+	public: void execGreaterEqual_IntInt(struct FFrame&,void* const);
+	public: void execGreaterEqual_StringString(struct FFrame&,void* const);
+	public: void execGreaterGreaterGreater_IntInt(struct FFrame&,void* const);
+	public: void execGreaterGreater_IntInt(struct FFrame&,void* const);
+	public: void execGreaterGreater_VectorRotator(struct FFrame&,void* const);
+	public: void execGreater_FloatFloat(struct FFrame&,void* const);
+	public: void execGreater_INT64INT64(struct FFrame&,void* const);
+	public: void execGreater_IntInt(struct FFrame&,void* const);
+	public: void execGreater_StringString(struct FFrame&,void* const);
+	public: void execHighNative0(struct FFrame&,void* const);
+	public: void execHighNative1(struct FFrame&,void* const);
+	public: void execHighNative10(struct FFrame&,void* const);
+	public: void execHighNative11(struct FFrame&,void* const);
+	public: void execHighNative12(struct FFrame&,void* const);
+	public: void execHighNative13(struct FFrame&,void* const);
+	public: void execHighNative14(struct FFrame&,void* const);
+	public: void execHighNative15(struct FFrame&,void* const);
+	public: void execHighNative2(struct FFrame&,void* const);
+	public: void execHighNative3(struct FFrame&,void* const);
+	public: void execHighNative4(struct FFrame&,void* const);
+	public: void execHighNative5(struct FFrame&,void* const);
+	public: void execHighNative6(struct FFrame&,void* const);
+	public: void execHighNative7(struct FFrame&,void* const);
+	public: void execHighNative8(struct FFrame&,void* const);
+	public: void execHighNative9(struct FFrame&,void* const);
+	public: void execINT64Const(struct FFrame&,void* const);
+	public: void execINT64ToBool(struct FFrame&,void* const);
+	public: void execINT64ToByte(struct FFrame&,void* const);
+	public: void execINT64ToFloat(struct FFrame&,void* const);
+	public: void execINT64ToInt(struct FFrame&,void* const);
+	public: void execINT64ToString(struct FFrame&,void* const);
+	public: void execInStr(struct FFrame&,void* const);
+	public: void execInstanceVariable(struct FFrame&,void* const);
+	public: void execIntConst(struct FFrame&,void* const);
+	public: void execIntConstByte(struct FFrame&,void* const);
+	public: void execIntOne(struct FFrame&,void* const);
+	public: void execIntToBool(struct FFrame&,void* const);
+	public: void execIntToByte(struct FFrame&,void* const);
+	public: void execIntToFloat(struct FFrame&,void* const);
+	public: void execIntToINT64(struct FFrame&,void* const);
+	public: void execIntToString(struct FFrame&,void* const);
+	public: void execIntZero(struct FFrame&,void* const);
+	public: void execInterpCurveEval(struct FFrame&,void* const);
+	public: void execInterpCurveGetInputDomain(struct FFrame&,void* const);
+	public: void execInterpCurveGetOutputRange(struct FFrame&,void* const);
+	public: void execInvert(struct FFrame&,void* const);
+	public: void execIsA(struct FFrame&,void* const);
+	public: void execIsInState(struct FFrame&,void* const);
+	public: void execIsPlus(struct FFrame&,void* const);
+	public: void execIterator(struct FFrame&,void* const);
+	public: void execJump(struct FFrame&,void* const);
+	public: void execJumpIfNot(struct FFrame&,void* const);
+	public: void execLeft(struct FFrame&,void* const);
+	public: void execLen(struct FFrame&,void* const);
+	public: void execLerp(struct FFrame&,void* const);
+	public: void execLessEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execLessEqual_INT64INT64(struct FFrame&,void* const);
+	public: void execLessEqual_IntInt(struct FFrame&,void* const);
+	public: void execLessEqual_StringString(struct FFrame&,void* const);
+	public: void execLessLess_IntInt(struct FFrame&,void* const);
+	public: void execLessLess_VectorRotator(struct FFrame&,void* const);
+	public: void execLess_FloatFloat(struct FFrame&,void* const);
+	public: void execLess_INT64INT64(struct FFrame&,void* const);
+	public: void execLess_IntInt(struct FFrame&,void* const);
+	public: void execLess_StringString(struct FFrame&,void* const);
+	public: void execLet(struct FFrame&,void* const);
+	public: void execLetBool(struct FFrame&,void* const);
+	public: void execLetDelegate(struct FFrame&,void* const);
+	public: void execLocalVariable(struct FFrame&,void* const);
+	public: void execLocalize(struct FFrame&,void* const);
+	public: void execLog(struct FFrame&,void* const);
+	public: void execLoge(struct FFrame&,void* const);
+	public: void execMax(struct FFrame&,void* const);
+	public: void execMetaCast(struct FFrame&,void* const);
+	public: void execMid(struct FFrame&,void* const);
+	public: void execMin(struct FFrame&,void* const);
+	public: void execMin64(struct FFrame&,void* const);
+	public: void execMirrorVectorByNormal(struct FFrame&,void* const);
+	public: void execMultiplyEqual_ByteByte(struct FFrame&,void* const);
+	public: void execMultiplyEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execMultiplyEqual_IntFloat(struct FFrame&,void* const);
+	public: void execMultiplyEqual_RotatorFloat(struct FFrame&,void* const);
+	public: void execMultiplyEqual_VectorFloat(struct FFrame&,void* const);
+	public: void execMultiplyEqual_VectorVector(struct FFrame&,void* const);
+	public: void execMultiplyMultiply_FloatFloat(struct FFrame&,void* const);
+	public: void execMultiply_FloatFloat(struct FFrame&,void* const);
+	public: void execMultiply_FloatRotator(struct FFrame&,void* const);
+	public: void execMultiply_FloatVector(struct FFrame&,void* const);
+	public: void execMultiply_INT64Float(struct FFrame&,void* const);
+	public: void execMultiply_INT64INT64(struct FFrame&,void* const);
+	public: void execMultiply_IntFloat(struct FFrame&,void* const);
+	public: void execMultiply_IntInt(struct FFrame&,void* const);
+	public: void execMultiply_RotatorFloat(struct FFrame&,void* const);
+	public: void execMultiply_VectorFloat(struct FFrame&,void* const);
+	public: void execMultiply_VectorVector(struct FFrame&,void* const);
+	public: void execNameConst(struct FFrame&,void* const);
+	public: void execNameToBool(struct FFrame&,void* const);
+	public: void execNameToString(struct FFrame&,void* const);
+	public: void execNativeParm(struct FFrame&,void* const);
+	public: void execNew(struct FFrame&,void* const);
+	public: void execNoObject(struct FFrame&,void* const);
+	public: void execNormal(struct FFrame&,void* const);
+	public: void execNormalize(struct FFrame&,void* const);
+	public: void execNotEqual_BoolBool(struct FFrame&,void* const);
+	public: void execNotEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execNotEqual_INT64INT64(struct FFrame&,void* const);
+	public: void execNotEqual_IntInt(struct FFrame&,void* const);
+	public: void execNotEqual_NameName(struct FFrame&,void* const);
+	public: void execNotEqual_ObjectObject(struct FFrame&,void* const);
+	public: void execNotEqual_RotatorRotator(struct FFrame&,void* const);
+	public: void execNotEqual_StringString(struct FFrame&,void* const);
+	public: void execNotEqual_VectorVector(struct FFrame&,void* const);
+	public: void execNot_PreBool(struct FFrame&,void* const);
+	public: void execNothing(struct FFrame&,void* const);
+	public: void execObjectConst(struct FFrame&,void* const);
+	public: void execObjectToBool(struct FFrame&,void* const);
+	public: void execObjectToString(struct FFrame&,void* const);
+	public: void execOrOr_BoolBool(struct FFrame&,void* const);
+	public: void execOr_IntInt(struct FFrame&,void* const);
+	public: void execOrthoRotation(struct FFrame&,void* const);
+	public: void execPercent_FloatFloat(struct FFrame&,void* const);
+	public: void execPrimitiveCast(struct FFrame&,void* const);
+	public: void execQuatFindBetween(struct FFrame&,void* const);
+	public: void execQuatFromAxisAndAngle(struct FFrame&,void* const);
+	public: void execQuatInvert(struct FFrame&,void* const);
+	public: void execQuatProduct(struct FFrame&,void* const);
+	public: void execQuatRotateVector(struct FFrame&,void* const);
+	public: void execRand(struct FFrame&,void* const);
+	public: void execResetConfig(struct FFrame&,void* const);
+	public: void execRight(struct FFrame&,void* const);
+	public: void execRotRand(struct FFrame&,void* const);
+	public: void execRotationConst(struct FFrame&,void* const);
+	public: void execRotator2Vector(struct FFrame&,void* const);
+	public: void execRotatorToBool(struct FFrame&,void* const);
+	public: void execRotatorToString(struct FFrame&,void* const);
+	public: void execRotatorToVector(struct FFrame&,void* const);
+	public: void execSaveConfig(struct FFrame&,void* const);
+	public: void execSelf(struct FFrame&,void* const);
+	public: void execSetPropertyText(struct FFrame&,void* const);
+	public: void execSin(struct FFrame&,void* const);
+	public: void execSmerp(struct FFrame&,void* const);
+	public: void execSqrt(struct FFrame&,void* const);
+	public: void execSquare(struct FFrame&,void* const);
+	public: void execStaticSaveConfig(struct FFrame&,void* const);
+	public: void execStop(struct FFrame&,void* const);
+	public: void execStringConst(struct FFrame&,void* const);
+	public: void execStringToBool(struct FFrame&,void* const);
+	public: void execStringToByte(struct FFrame&,void* const);
+	public: void execStringToFloat(struct FFrame&,void* const);
+	public: void execStringToINT64(struct FFrame&,void* const);
+	public: void execStringToInt(struct FFrame&,void* const);
+	public: void execStringToRotator(struct FFrame&,void* const);
+	public: void execStringToVector(struct FFrame&,void* const);
+	public: void execStructCmpEq(struct FFrame&,void* const);
+	public: void execStructCmpNe(struct FFrame&,void* const);
+	public: void execStructMember(struct FFrame&,void* const);
+	public: void execSubstitute(struct FFrame&,void* const);
+	public: void execSubtractEqual_ByteByte(struct FFrame&,void* const);
+	public: void execSubtractEqual_FloatFloat(struct FFrame&,void* const);
+	public: void execSubtractEqual_INT64INT64(struct FFrame&,void* const);
+	public: void execSubtractEqual_IntInt(struct FFrame&,void* const);
+	public: void execSubtractEqual_RotatorRotator(struct FFrame&,void* const);
+	public: void execSubtractEqual_VectorVector(struct FFrame&,void* const);
+	public: void execSubtractSubtract_Byte(struct FFrame&,void* const);
+	public: void execSubtractSubtract_Int(struct FFrame&,void* const);
+	public: void execSubtractSubtract_PreByte(struct FFrame&,void* const);
+	public: void execSubtractSubtract_PreInt(struct FFrame&,void* const);
+	public: void execSubtract_FloatFloat(struct FFrame&,void* const);
+	public: void execSubtract_INT64INT64(struct FFrame&,void* const);
+	public: void execSubtract_IntInt(struct FFrame&,void* const);
+	public: void execSubtract_PreFloat(struct FFrame&,void* const);
+	public: void execSubtract_PreINT64(struct FFrame&,void* const);
+	public: void execSubtract_PreInt(struct FFrame&,void* const);
+	public: void execSubtract_PreVector(struct FFrame&,void* const);
+	public: void execSubtract_RotatorRotator(struct FFrame&,void* const);
+	public: void execSubtract_VectorVector(struct FFrame&,void* const);
+	public: void execSwitch(struct FFrame&,void* const);
+	public: void execTan(struct FFrame&,void* const);
+	public: void execTrue(struct FFrame&,void* const);
+	public: void execUndefined(struct FFrame&,void* const);
+	public: void execUnicodeStringConst(struct FFrame&,void* const);
+	public: void execVRand(struct FFrame&,void* const);
+	public: void execVSize(struct FFrame&,void* const);
+	public: void execVector2Rotator(struct FFrame&,void* const);
+	public: void execVectorConst(struct FFrame&,void* const);
+	public: void execVectorToBool(struct FFrame&,void* const);
+	public: void execVectorToRotator(struct FFrame&,void* const);
+	public: void execVectorToString(struct FFrame&,void* const);
+	public: void execVirtualFunction(struct FFrame&,void* const);
+	public: void execWarn(struct FFrame&,void* const);
+	public: void execXorXor_BoolBool(struct FFrame&,void* const);
+	public: void execXor_IntInt(struct FFrame&,void* const);
+	public: wchar_t const* GetFullName(wchar_t*,INT)const;
+	public: wchar_t const* GetName()const;
+	public: wchar_t const* GetPathName(UObject*,wchar_t*)const;
+	public: wchar_t const* GetShortPathNameW(wchar_t*)const;
+UObjectExporterT3D
+	public: UObjectExporterT3D();
+	public: UObjectExporterT3D(UObjectExporterT3D const&);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT ExportText(UObject*,wchar_t const*,FOutputDevice&,FFeedbackContext*);
+	public: virtual ~UObjectExporterT3D();
+	public: void StaticConstructor();
+UObjectProperty
+	public: UObjectProperty();
+	public: UObjectProperty(UObjectProperty const&);
+	public: UObjectProperty(enum ECppProperty,INT,wchar_t const*,DWORD,UClass*);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CleanupDestroyed(unsigned char*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UObjectProperty();
+UPackage
+	public: INT CheckBindPackage();
+	public: UPackage();
+	public: UPackage(UPackage const&);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual void Destroy();
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UPackage();
+	public: void* GetDllExport(wchar_t const*,INT);
+UPackageMap
+	public: UPackageMap();
+	public: UPackageMap(UPackageMap const&);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual FClassNetCache* GetClassNetCache(UClass*);
+	public: virtual INT AddLinker(ULinkerLoad*);
+	public: virtual INT CanSerializeObject(UObject*);
+	public: virtual INT GetMaxObjectIndex();
+	public: virtual INT ObjectToIndex(UObject*);
+	public: virtual INT SerializeName(FArchive&,FName&);
+	public: virtual INT SerializeObject(FArchive&,UClass*,UObject*&);
+	public: virtual INT SupportsPackage(UObject*);
+	public: virtual UObject* IndexToObject(INT,INT);
+	public: virtual void Compute();
+	public: virtual void Destroy();
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UPackageMap();
+	public: void Copy(UPackageMap*);
+	public: void CopyLinkers(UPackageMap*);
+UParamStack
+	protected: UParamStack();
+	public: UParamStack(UParamStack const&);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual ~UParamStack();
+	public: void SetParamStack(L2ParamStack*);
+	public: void execGetFloat(struct FFrame&,void* const);
+	public: void execGetInt(struct FFrame&,void* const);
+	public: void execGetString(struct FFrame&,void* const);
+	public: void execPushInt(struct FFrame&,void* const);
+	public: void execPushString(struct FFrame&,void* const);
+UProperty
+	public: INT GetSize()const;
+	public: INT Matches(void const*,void const*,INT)const;
+	public: INT ShouldSerializeValue(FArchive&)const;
+	public: UField* GetOuterUField()const;
+	public: UProperty();
+	public: UProperty(UProperty const&);
+	public: UProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: virtual INT ExportText(INT,FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual INT Port()const;
+	public: virtual unsigned char GetID()const;
+	public: virtual void CleanupDestroyed(unsigned char*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void DestroyValue(void*)const;
+	public: virtual void ExportCpp(FOutputDevice&,INT,INT,INT,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UProperty();
+UPtrProperty
+	public: UPtrProperty();
+	public: UPtrProperty(UPtrProperty const&);
+	public: UPtrProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual void CopyCompleteValue(void*,void*,UObject*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UPtrProperty();
+UState
+	protected: UState();
+	public: UState(UState const&);
+	public: UState(UState*);
+	public: UState(enum ENativeConstructor,INT,wchar_t const*,wchar_t const*,DWORD,UState*);
+	public: UState(enum EStaticConstructor,INT,wchar_t const*,wchar_t const*,DWORD);
+	public: UState* GetSuperState()const;
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT MergeBools();
+	public: virtual UStruct* GetInheritanceSuper();
+	public: virtual void Destroy();
+	public: virtual void Link(FArchive&,INT);
+	public: virtual void Serialize(FArchive&);
+	public: virtual ~UState();
+UStrProperty
+	public: UStrProperty();
+	public: UStrProperty(UStrProperty const&);
+	public: UStrProperty(enum ECppProperty,INT,wchar_t const*,DWORD);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void DestroyValue(void*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UStrProperty();
+UStruct
+	protected: UStruct();
+	public: DWORD GetScriptTextCRC();
+	public: FString FunctionMD5();
+	public: INT IsChildOf(UStruct const*)const;
+	public: INT StructCompare(void const*,void const*);
+	public: UStruct(UStruct const&);
+	public: UStruct(UStruct*);
+	public: UStruct(enum ENativeConstructor,INT,wchar_t const*,wchar_t const*,DWORD,UStruct*);
+	public: UStruct(enum EStaticConstructor,INT,wchar_t const*,wchar_t const*,DWORD);
+	public: UStruct* GetSuperStruct()const;
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT GetPropertiesSize();
+	public: virtual UStruct* GetInheritanceSuper();
+	public: virtual enum EExprToken SerializeExpr(INT&,FArchive&);
+	public: virtual enum EExprToken SerializeExprGC(INT&,FArchive&);
+	public: virtual void AddCppProperty(UProperty*);
+	public: virtual void CleanupDestroyed(unsigned char*);
+	public: virtual void Destroy();
+	public: virtual void Link(FArchive&,INT);
+	public: virtual void PostLoad();
+	public: virtual void Register();
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeBin(FArchive&,unsigned char*,INT);
+	public: virtual void SerializeBinGC(FArchive&,unsigned char*);
+	public: virtual void SerializeTaggedProperties(FArchive&,unsigned char*,UClass*);
+	public: virtual wchar_t* GetNameCPP();
+	public: virtual ~UStruct();
+	public: void SetPropertiesSize(INT);
+UStructProperty
+	public: UStructProperty();
+	public: UStructProperty(UStructProperty const&);
+	public: UStructProperty(enum ECppProperty,INT,wchar_t const*,DWORD,UStruct*);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual INT Identical(void const*,void const*)const;
+	public: virtual INT NetSerializeItem(FArchive&,UPackageMap*,void*)const;
+	public: virtual void CleanupDestroyed(unsigned char*)const;
+	public: virtual void CopySingleValue(void*,void*,UObject*)const;
+	public: virtual void DestroyValue(void*)const;
+	public: virtual void ExportCppItem(FOutputDevice&,INT)const;
+	public: virtual void ExportTextItem(FString&,unsigned char*,unsigned char*,INT)const;
+	public: virtual void Link(FArchive&,UProperty*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void SerializeItem(FArchive&,void*,INT)const;
+	public: virtual wchar_t const* ImportText(wchar_t const*,unsigned char*,INT,INT)const;
+	public: virtual ~UStructProperty();
+USubsystem
+	protected: USubsystem();
+	public: USubsystem(USubsystem const&);
+	public: static UClass* __cdecl StaticClass();
+	public: virtual void Tick(FLOAT);
+	public: virtual ~USubsystem();
+UTextBuffer
+	public: UTextBuffer(UTextBuffer const&);
+	public: UTextBuffer(wchar_t const*);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual void Serialize(FArchive&);
+	public: virtual void Serialize(wchar_t const*,enum EName);
+	public: virtual ~UTextBuffer();
+UTextBufferFactory
+	public: UTextBufferFactory();
+	public: UTextBufferFactory(UTextBufferFactory const&);
+	public: static UClass* __cdecl StaticClass();
+	public: static void __cdecl InternalConstructor(void*);
+	public: virtual UObject* FactoryCreateText(ULevel*,UClass*,UObject*,FName,DWORD,UObject*,wchar_t const*,wchar_t const*&,wchar_t const*,FFeedbackContext*);
+	public: virtual ~UTextBufferFactory();
+	public: void StaticConstructor();
+
+Globals:
+	 CORE_API extern __int64 GMACAddress
+	 CORE_API extern __int64 GTicks
+	 CORE_API extern bool GL2DebugGlobal0
+	 CORE_API extern bool GL2DebugGlobal1
+	 CORE_API extern bool GL2DebugGlobal2
+	 CORE_API extern bool GL2DebugGlobal3
+	 CORE_API extern bool GL2DebugGlobal4
+	 CORE_API extern class FCodec * GL2CurrentTxtCodec
+	 CORE_API extern class FCodec * GL2DESCodec
+	 CORE_API extern class FConfigCache * GConfig
+	 CORE_API extern class FExec * GExec
+	 CORE_API extern class FFeedbackContext * GWarn
+	 CORE_API extern class FFileManager * GFileManager
+	 CORE_API extern class FFileStream * GFileStream
+	 CORE_API extern class FGlobalMath GMath
+	 CORE_API extern class FGuid GL224HzSessionID
+	 CORE_API extern class FMalloc * GMalloc
+	 CORE_API extern class FMemStack GMem
+	 CORE_API extern class FOutputDevice * GCheckGrpLog
+	 CORE_API extern class FOutputDevice * GLog
+	 CORE_API extern class FOutputDevice * GLogHook
+	 CORE_API extern class FOutputDevice * GLogHook2
+	 CORE_API extern class FOutputDevice * GNetworkLog
+	 CORE_API extern class FOutputDevice * GNull
+	 CORE_API extern class FOutputDeviceError * GError
+	 CORE_API extern class FString GL2EngineBuildTime
+	 CORE_API extern class FTransactionBase * GUndo
+	 CORE_API extern class TArray<class FEdLoadError> GEdLoadErrors
+	 CORE_API extern class TArray<class FString> GL2EditorFileLoadErrorMessage1
+	 CORE_API extern class TArray<class FString> GL2EditorFileLoadErrorMessage2
+	 CORE_API extern class TArray<int> GL2F2PQuestRewardPenaltyQuests
+	 CORE_API extern class TArray<void *> GL2BeastNewlyLoadedMeshArray
+	 CORE_API extern class TArray<void *> GL2MaterialCompileCollectMaterialsArray
+	 CORE_API extern class UDebugger * GDebugger
+	 CORE_API extern class UObject * GPropObject
+	 CORE_API extern class UProperty * GProperty
+	 CORE_API extern class USubsystem * GWindowManager
+	 CORE_API extern class USystem * GSys
+	 CORE_API extern double GSecondsPerCycle
+	 CORE_API extern double GSecondsPerCycleQPF
+	 CORE_API extern enum ERunningOS GRunningOS
+	 CORE_API extern enum GCSTATE GL2GCState
+	 CORE_API extern float * GL2UserPosition
+	 CORE_API extern float GAudioDefaultRadius
+	 CORE_API extern float GAudioMaxRadiusMultiplier
+	 CORE_API extern float GL2AntiPortalCR
+	 CORE_API extern float GL2ClickActorColorScaleB
+	 CORE_API extern float GL2ClickActorColorScaleG
+	 CORE_API extern float GL2ClickActorColorScaleR
+	 CORE_API extern float GL2DramaticSunLightDiffuseValue
+	 CORE_API extern float GL2FogEnd
+	 CORE_API extern float GL2FogEndOriginal
+	 CORE_API extern float GL2FogSpeed
+	 CORE_API extern float GL2FogStart
+	 CORE_API extern float GL2FogStartOriginal
+	 CORE_API extern float GL2LODPivot
+	 CORE_API extern float GL2LightmapScale
+	 CORE_API extern float GL2MaxPawnResourceLoad
+	 CORE_API extern float GL2OriginPawnCR
+	 CORE_API extern float GL2OriginStaticMeshCR
+	 CORE_API extern float GL2OriginStaticMeshLodCR
+	 CORE_API extern float GL2OriginTerrainCR
+	 CORE_API extern float GL2ProjectorCR
+	 CORE_API extern float GL2SeamlessMaginotLine
+	 CORE_API extern float GL2TerrainCR
+	 CORE_API extern int GBlendSpineBone
+	 CORE_API extern int GCastDuplicate
+	 CORE_API extern int GColorBits
+	 CORE_API extern int GEdSelectionLock
+	 CORE_API extern int GEdShowFogInViewports
+	 CORE_API extern int GEffectLevel
+	 CORE_API extern int GEnableEngSelection
+	 CORE_API extern int GEnglishCountry
+	 CORE_API extern int GExitPurge
+	 CORE_API extern int GForcedBeastUnwrap
+	 CORE_API extern int GGFxEnable
+	 CORE_API extern int GIgnoreFriend
+	 CORE_API extern int GIgnorePartyInviting
+	 CORE_API extern int GIsArrowMode
+	 CORE_API extern int GIsBenchmarking
+	 CORE_API extern int GIsClient
+	 CORE_API extern int GIsCriticalError
+	 CORE_API extern int GIsDynamicRecompile
+	 CORE_API extern int GIsEditor
+	 CORE_API extern int GIsEnterChatting
+	 CORE_API extern int GIsFixedDefaultCamera
+	 CORE_API extern int GIsGuarded
+	 CORE_API extern int GIsL2Console
+	 CORE_API extern int GIsL2HideName
+	 CORE_API extern int GIsL2Mark
+	 CORE_API extern int GIsL2NetLog
+	 CORE_API extern int GIsL2NetLogin
+	 CORE_API extern int GIsL2Projector
+	 CORE_API extern int GIsL2Seamless
+	 CORE_API extern int GIsL2SuperShadow
+	 CORE_API extern int GIsL2WaterEffect
+	 CORE_API extern int GIsL2WaterEffectType
+	 CORE_API extern int GIsLeftHandedMouse
+	 CORE_API extern int GIsLoadL2WaterEffect
+	 CORE_API extern int GIsNative
+	 CORE_API extern int GIsOldChat
+	 CORE_API extern int GIsOnlyL2Console
+	 CORE_API extern int GIsOnlyMSN
+	 CORE_API extern int GIsOnlyXMLUI
+	 CORE_API extern int GIsOpenGL
+	 CORE_API extern int GIsRejectingDuel
+	 CORE_API extern int GIsRequestingExit
+	 CORE_API extern int GIsRunning
+	 CORE_API extern int GIsSEK
+	 CORE_API extern int GIsScriptable
+	 CORE_API extern int GIsServer
+	 CORE_API extern int GIsSlowTask
+	 CORE_API extern int GIsStarted
+	 CORE_API extern int GIsStickyWindow
+	 CORE_API extern int GIsTestHtml
+	 CORE_API extern int GIsTransparencyMode
+	 CORE_API extern int GIsTrueFontUse
+	 CORE_API extern int GIsUCC
+	 CORE_API extern int GIsUseXMLUI
+	 CORE_API extern int GL224HzSessionIDIsArrived
+	 CORE_API extern int GL2ActorAppearingType
+	 CORE_API extern int GL2Antialiasing
+	 CORE_API extern int GL2BeastbCollectStaticMesh
+	 CORE_API extern int GL2CanUseJoystick
+	 CORE_API extern int GL2CheckFakeItem
+	 CORE_API extern int GL2CheckResource
+	 CORE_API extern int GL2ClientOrder
+	 CORE_API extern int GL2ClientStandAlone
+	 CORE_API extern int GL2CmdLineLogin
+	 CORE_API extern int GL2DefaultShadow
+	 CORE_API extern int GL2DisableGCLobby
+	 CORE_API extern int GL2DrawLODLevel
+	 CORE_API extern int GL2DrawTargetName
+	 CORE_API extern int GL2EnableMemDump
+	 CORE_API extern int GL2EnablePurgeLevel
+	 CORE_API extern int GL2EnableStaticMeshShadow
+	 CORE_API extern int GL2ExclusiveServerNum
+	 CORE_API extern int GL2ExternalLogin
+	 CORE_API extern int GL2F2PQuestRewardPenaltyPer
+	 CORE_API extern int GL2FFEffectUse
+	 CORE_API extern int GL2Flash
+	 CORE_API extern int GL2FreeUserTwoClient
+	 CORE_API extern int GL2GPUSkinning
+	 CORE_API extern int GL2HDREffect
+	 CORE_API extern int GL2HDREffectType
+	 CORE_API extern int GL2HideDropMesh
+	 CORE_API extern int GL2IsBuildSimpleEmitter
+	 CORE_API extern int GL2IsFirstRun
+	 CORE_API extern int GL2IsMovieRender
+	 CORE_API extern int GL2IsUIEditor
+	 CORE_API extern int GL2KeepMinFrameRate
+	 CORE_API extern int GL2LODSpecularOff
+	 CORE_API extern int GL2LetterBoxAlpha
+	 CORE_API extern int GL2LevelOfWeather
+	 CORE_API extern int GL2MainThreadErrCount
+	 CORE_API extern int GL2MaterialCompileCollectMaterials
+	 CORE_API extern int GL2MouseAutoMove
+	 CORE_API extern int GL2MouseCaptured
+	 CORE_API extern int GL2NPGEPacking
+	 CORE_API extern int GL2NVPerfHUD
+	 CORE_API extern int GL2NeedEditChange
+	 CORE_API extern int GL2NewVoteSystem
+	 CORE_API extern int GL2NoActorEffectSort
+	 CORE_API extern int GL2NoGC
+	 CORE_API extern int GL2OthersThreadErrCount
+	 CORE_API extern int GL2PartyLooting
+	 CORE_API extern int GL2RenderActorLimit
+	 CORE_API extern int GL2RenderActorLimitOpt
+	 CORE_API extern int GL2RenderDeco
+	 CORE_API extern int GL2ReplayLoadResource
+	 CORE_API extern int GL2ReplayMode
+	 CORE_API extern int GL2SaveLog
+	 CORE_API extern int GL2ScreenShotQuality
+	 CORE_API extern int GL2SeamlessWorld
+	 CORE_API extern int GL2SendMsgToGFX
+	 CORE_API extern int GL2SetPawnResourceWhenRender
+	 CORE_API extern int GL2Shader
+	 CORE_API extern int GL2ShaderWater
+	 CORE_API extern int GL2ShadowRenderSkipCnt
+	 CORE_API extern int GL2SharedSky
+	 CORE_API extern int GL2ShowCMViewer
+	 CORE_API extern int GL2ShowDamageText
+	 CORE_API extern int GL2ShowEmitterDebugInfo
+	 CORE_API extern int GL2ShowEnableTrackerBox
+	 CORE_API extern int GL2ShowExampleAnimation
+	 CORE_API extern int GL2ShowGroupName
+	 CORE_API extern int GL2ShowImportPackage
+	 CORE_API extern int GL2ShowLectureMark
+	 CORE_API extern int GL2ShowMyName
+	 CORE_API extern int GL2ShowNPCName
+	 CORE_API extern int GL2ShowOtherPCName
+	 CORE_API extern int GL2ShowPartyMemberName
+	 CORE_API extern int GL2ShowPledgeMemberName
+	 CORE_API extern int GL2ShowPortalPoly
+	 CORE_API extern int GL2ShowShopMsg
+	 CORE_API extern int GL2ShowSkillCastingBox
+	 CORE_API extern int GL2ShowStrangeStateBox
+	 CORE_API extern int GL2ShowUIScriptDebugInfo
+	 CORE_API extern int GL2ShowVirtualWindowBackground
+	 CORE_API extern int GL2ShowWindowBox
+	 CORE_API extern int GL2ShowWindowName
+	 CORE_API extern int GL2SkipCalculateFullShader
+	 CORE_API extern int GL2SoundDataBufferSize
+	 CORE_API extern int GL2TestServer
+	 CORE_API extern int GL2TextureDetail
+	 CORE_API extern int GL2ThaiHtmlMode
+	 CORE_API extern int GL2ThreadFilter
+	 CORE_API extern int GL2ThreadFilterBackup
+	 CORE_API extern int GL2ThreadSkinning
+	 CORE_API extern int GL2UnderWaterEffect
+	 CORE_API extern int GL2UpdateSlowlyState
+	 CORE_API extern int GL2UseAntiPortalClipping
+	 CORE_API extern int GL2UseAuthGameGuard
+	 CORE_API extern int GL2UseAuthUserData
+	 CORE_API extern int GL2UseAutoTrackingPawn
+	 CORE_API extern int GL2UseBoneSimul
+	 CORE_API extern int GL2UseColorCursor
+	 CORE_API extern int GL2UseCommand
+	 CORE_API extern int GL2UseEMailAccount
+	 CORE_API extern int GL2UseGameGuard
+	 CORE_API extern int GL2UseGlobalOTP
+	 CORE_API extern int GL2UseGoodsInventory
+	 CORE_API extern int GL2UseHitWateEffect
+	 CORE_API extern int GL2UseKeyCrypt
+	 CORE_API extern int GL2UseLazyMode
+	 CORE_API extern int GL2UseLightmap
+	 CORE_API extern int GL2UseNCGuard
+	 CORE_API extern int GL2UseNewPetition
+	 CORE_API extern int GL2UseNpcParts
+	 CORE_API extern int GL2UsePawnResourceManager
+	 CORE_API extern int GL2UseQuestRewardPenaltyPer
+	 CORE_API extern int GL2UseReducePawnLOD
+	 CORE_API extern int GL2UseReplayManager
+	 CORE_API extern int GL2UseSameVS
+	 CORE_API extern int GL2UseSecondaryAuth
+	 CORE_API extern int GL2UseServerAddrChangeCommandLine
+	 CORE_API extern int GL2UseServerYaw
+	 CORE_API extern int GL2UseSkipAnim
+	 CORE_API extern int GL2UseSpeedHackCheck
+	 CORE_API extern int GL2UseTrilinear
+	 CORE_API extern int GL2UseUShaderSpecularTerm
+	 CORE_API extern int GL2UseUnderwear
+	 CORE_API extern int GL2UserPremiumLevel
+	 CORE_API extern int GL2UsingJoystick
+	 CORE_API extern int GL2WireSkeletalMesh
+	 CORE_API extern int GL2bRenderEngine
+	 CORE_API extern int GL2bRenderTerrain
+	 CORE_API extern int GL2bSpawnSimpleEmitter
+	 CORE_API extern int GL2bUsePreCaching
+	 CORE_API extern int GL2bUserpawnOriginLoc
+	 CORE_API extern int GLanguageType
+	 CORE_API extern int GLazyLoad
+	 CORE_API extern int GMsnDontDisturb
+	 CORE_API extern int GMsnHideAll
+	 CORE_API extern int GMsnHideWarnMsg
+	 CORE_API extern int GMsnLoginAlarm
+	 CORE_API extern int GMsnMessageAlarm
+	 CORE_API extern int GMsnNewEMailAlarm
+	 CORE_API extern int GMsnSoundAlarm
+	 CORE_API extern int GNativeDuplicate
+	 CORE_API extern int GRefreshRate
+	 CORE_API extern int GSEKScreenX
+	 CORE_API extern int GSEKScreenY
+	 CORE_API extern int GScriptCycles
+	 CORE_API extern int GScriptEntryTag
+	 CORE_API extern int GShowDecorationDensityMesh
+	 CORE_API extern int GUnicode
+	 CORE_API extern int GUnicodeOS
+	 CORE_API extern int GUseTSF
+	 CORE_API extern int GUseUniqueObjectName
+	 CORE_API extern int GUsingOMP
+	 CORE_API extern int Gstar2010bRenderLevel
+	 CORE_API extern int const GL2BeastLightMapNum
+	 CORE_API extern protected: static class TArray<class FPreferencesInfo> UObject::GObjPreferences
+	 CORE_API extern protected: static class TArray<class FRegistryObjectInfo> UObject::GObjDrivers
+	 CORE_API extern protected: static class TArray<class UObject *> UObject::GObjLoaded
+	 CORE_API extern protected: static class TArray<class UObject *> UObject::GObjLoadedBuffer
+	 CORE_API extern protected: static class TArray<class UObject *> UObject::GObjLoaders
+	 CORE_API extern protected: static class TArray<class UObject *> UObject::GObjObjects
+	 CORE_API extern protected: static class TArray<class UObject *> UObject::GObjObjectsBuffer
+	 CORE_API extern protected: static class TArray<class UObject *> UObject::GObjRegistrants
+	 CORE_API extern protected: static class TArray<class UObject *> UObject::GObjRoot
+	 CORE_API extern protected: static class TArray<int> UObject::GObjAvailable
+	 CORE_API extern protected: static class TMultiMap<class FName,class FName> * UObject::GObjPackageRemap
+	 CORE_API extern protected: static class UObject * * UObject::GObjHash
+	 CORE_API extern protected: static class UObject * * UObject::GObjHashBuffer
+	 CORE_API extern protected: static class UObject * UObject::GAutoRegister
+	 CORE_API extern protected: static class UPackage * UObject::GObjTransientPkg
+	 CORE_API extern protected: static int UObject::GImportCount
+	 CORE_API extern protected: static int UObject::GObjBeginLoadCount
+	 CORE_API extern protected: static int UObject::GObjInitialized
+	 CORE_API extern protected: static int UObject::GObjNoRegister
+	 CORE_API extern protected: static int UObject::GObjRegisterCount
+	 CORE_API extern protected: static int UObject::GSWObjBeginLoadCount
+	 CORE_API extern protected: static wchar_t * UObject::GLanguage
+	 CORE_API extern protected: static wchar_t * UObject::GObjCachedLanguage
+	 CORE_API extern public: static class FCriticalSection * UObject::GDissociateImportsCS
+	 CORE_API extern public: static class FCriticalSection * UObject::GLoadingCS
+	 CORE_API extern public: static class FCriticalSection * UObject::GObjAvailableCS
+	 CORE_API extern public: static class FCriticalSection * UObject::GScriptingCS
+	 CORE_API extern public: static class FCriticalSection * UObject::GStaticMeshCollisionCS
+	 CORE_API extern public: static class TArray<class UObject *> & __cdecl UObject::GetObjLoaded(void)
+	 CORE_API extern public: static class TArray<class UObject *> __cdecl UObject::GetLoaderList(void)
+	 CORE_API extern public: static int UObject::GActorCurCount
+	 CORE_API extern public: static int UObject::GActorNewCount
+	 CORE_API extern public: static int UObject::GActorPeakCount
+	 CORE_API extern public: static int UObject::GEmitterCurCount
+	 CORE_API extern public: static int UObject::GEmitterNewCount
+	 CORE_API extern public: static int UObject::GEmitterPeakCount
+	 CORE_API extern public: static int UObject::GObjCurCount
+	 CORE_API extern public: static int UObject::GObjNewCount
+	 CORE_API extern public: static int UObject::GObjPeakCount
+	 CORE_API extern public: static int UObject::GPawnCurCount
+	 CORE_API extern public: static int UObject::GPawnNewCount
+	 CORE_API extern public: static int UObject::GPawnPeakCount
+	 CORE_API extern public: static void __cdecl UObject::GetClassNamesFromScriptPackage(class UPackage const *,class TArray<class FString> &,class UClass *)
+	 CORE_API extern public: static void __cdecl UObject::GetPreferences(class TArray<class FPreferencesInfo> &,wchar_t const *,int)
+	 CORE_API extern public: static void __cdecl UObject::GetRegistryObjects(class TArray<class FRegistryObjectInfo> &,class UClass *,class UClass *,int)
+	 CORE_API extern struct HWND__ * GTopWnd
+	 CORE_API extern unsigned __int64 GMakeCacheIDIndex
+	 CORE_API extern unsigned char * GL2SoundDataBuffer
+	 CORE_API extern unsigned char * GPropAddr
+	 CORE_API extern unsigned char __cdecl GRegisterNative(int,void (__thiscall UObject::*const &)(struct FFrame &,void * const))
+	 CORE_API extern unsigned long * GCRCTable
+	 CORE_API extern unsigned long GCPUCoreCount
+	 CORE_API extern unsigned long GL2CurrentResourceBytes
+	 CORE_API extern unsigned long GNewMemoryCount
+	 CORE_API extern unsigned long GPageSize
+	 CORE_API extern unsigned long GPhysicalMemory
+	 CORE_API extern unsigned long GUglyHackFlags
+	 CORE_API extern void (__thiscall UObject::** GNatives)(struct FFrame &,void * const)
+	 CORE_API extern void * * GDllAddresses
+	 CORE_API extern void * GL224HzSessionEvent
+	 CORE_API extern void * GL2FirstRunMutex
+	 CORE_API extern void * GL2FreeRunningFirstHandle
+	 CORE_API extern void * GL2RunningFirstHandle
+	 CORE_API extern void __cdecl GInitRunaway(void)
+	 CORE_API extern wchar_t * GCdPath
+	 CORE_API extern wchar_t * GCountryCode
+	 CORE_API extern wchar_t * GCountryName
+	 CORE_API extern wchar_t * GErrorHist
+	 CORE_API extern wchar_t * GErrorMsg
+	 CORE_API extern wchar_t * GExceptionInfo
+	 CORE_API extern wchar_t * GFalse
+	 CORE_API extern wchar_t * GFullCheckMsg
+	 CORE_API extern wchar_t * GIni
+	 CORE_API extern wchar_t * GL2HomeURL
+	 CORE_API extern wchar_t * GL2ShaderPath
+	 CORE_API extern wchar_t * GMachineCPU
+	 CORE_API extern wchar_t * GMachineOS
+	 CORE_API extern wchar_t * GMachineVideo
+	 CORE_API extern wchar_t * GNo
+	 CORE_API extern wchar_t * GNone
+	 CORE_API extern wchar_t * GTrue
+	 CORE_API extern wchar_t * GUserIni
+	 CORE_API extern wchar_t * GYes
+
+Functions:
+	__int64 __cdecl appAtoI64(wchar_t const *)
+	char const * __cdecl appToAnsi(wchar_t const *,char *)
+	class FString __cdecl appClipboardPaste(void)
+	class FString __cdecl appFormat(class FString,class TMultiMap<class FString,class FString> const &)
+	class FString __cdecl appGetGMTRef(void)
+	double __cdecl appAcos(double)
+	double __cdecl appAtan(double)
+	double __cdecl appAtan2(double,double)
+	double __cdecl appCos(double)
+	double __cdecl appFmod(double,double)
+	double __cdecl appPow(double,double)
+	double __cdecl appSecondsQPC(void)
+	double __cdecl appSin(double)
+	double __cdecl appSqrt(double)
+	double __cdecl appTan(double)
+	float __cdecl appAtof(wchar_t const *)
+	float __cdecl appFractional(float)
+	float __cdecl appFrand(void)
+	float __cdecl appSRand(void)
+	int __cdecl appAnsiStrlen(char const *)
+	int __cdecl appAtoi(wchar_t const *)
+	int __cdecl appCeil(float)
+	int __cdecl appCreateBitmap(wchar_t const *,int,int,unsigned long *,class FFileManager *,int)
+	int __cdecl appCreateJpeg(wchar_t const *,int,int,unsigned long *,class FFileManager *,int)
+	int __cdecl appFindPackageFile(wchar_t const *,class FGuid const *,wchar_t *)
+	int __cdecl appFloor(float)
+	int __cdecl appGetProcReturnCode(void *,int *)
+	int __cdecl appGetVarArgs(wchar_t *,int,wchar_t const * &)
+	int __cdecl appInStr(wchar_t const *,wchar_t const *,int)
+	int __cdecl appIsDebuggerPresent(void)
+	int __cdecl appIsNan(double)
+	int __cdecl appIsPureAnsi(wchar_t const *)
+	int __cdecl appLoadFileToArray(class TArray<unsigned char> &,wchar_t const *,class FFileManager *)
+	int __cdecl appLoadFileToString(class FString &,wchar_t const *,class FFileManager *)
+	int __cdecl appMemcmp(void const *,void const *,int)
+	int __cdecl appRand(void)
+	int __cdecl appRound(float)
+	int __cdecl appSaveArrayToFile(class TArray<unsigned char> const &,wchar_t const *,class FFileManager *)
+	int __cdecl appSaveStringToFile(class FString const &,wchar_t const *,class FFileManager *,enum EFileWrite)
+	int __cdecl appSprintf(wchar_t *,wchar_t const *,...)
+	int __cdecl appStrcmp(wchar_t const *,wchar_t const *)
+	int __cdecl appStricmp(wchar_t const *,wchar_t const *)
+	int __cdecl appStrlen(wchar_t const *)
+	int __cdecl appStrnicmp(wchar_t const *,wchar_t const *,int)
+	int __cdecl appStrtoi(wchar_t const *,wchar_t * *,int)
+	int const __cdecl appMsgf(int,wchar_t const *,...)
+	unsigned __int64 __cdecl appCyclesQPC(void)
+	unsigned char __cdecl appCeilLogTwo(unsigned long)
+	unsigned long __cdecl appMemCrc(void const *,int,unsigned long)
+	void * __cdecl appCreateProc(wchar_t const *,wchar_t const *)
+	void * __cdecl appGetDllExport(void *,wchar_t const *)
+	void * __cdecl appGetDllHandle(wchar_t const *)
+	void * __cdecl appMemmove(void *,void const *,int)
+	void __cdecl appCleanFileCache(void)
+	void __cdecl appClipboardCopy(wchar_t const *)
+	void __cdecl appConvertIntToTime(int,int &,int &,int &,int &,int &)
+	void __cdecl appCreateTempFilename(wchar_t const *,wchar_t *)
+	void __cdecl appDebugBreak(void)
+	void __cdecl appExceptionToString(class L2Exception const &)
+	void __cdecl appExit(void)
+	void __cdecl appFailAssert(char const *,char const *,int)
+	void __cdecl appFreeDllHandle(void *)
+	void __cdecl appGetLastError(void)
+	void __cdecl appInit(wchar_t const *,wchar_t const *,class FMalloc *,class FOutputDevice *,class FOutputDeviceError *,class FFeedbackContext *,class FFileManager *,class FConfigCache * (__cdecl*)(void),int,class FCodec *)
+	void __cdecl appLaunchURL(wchar_t const *,wchar_t const *,class FString *)
+	void __cdecl appLaunchURLNoActive(wchar_t const *,wchar_t const *,class FString *)
+	void __cdecl appLocalTime(int &,int &,int &,int &,int &)
+	void __cdecl appMD5Final(unsigned char *,struct FMD5Context *)
+	void __cdecl appMD5Init(struct FMD5Context *)
+	void __cdecl appMD5Update(struct FMD5Context *,unsigned char *,int)
+	void __cdecl appMemset(void *,int,int)
+	void __cdecl appMemswap(void *,void *,unsigned long)
+	void __cdecl appPreExit(void)
+	void __cdecl appQsort(void *,int,int,int (__cdecl*)(void const *,void const *))
+	void __cdecl appRandInit(int)
+	void __cdecl appRequestExit(int)
+	void __cdecl appSleep(float)
+	void __cdecl appSRandInit(int)
+	void __cdecl appSystemTime(int &,int &,int &,int &,int &,int &,int &,int &)
+	void __cdecl appThrowf(wchar_t const *,...)
+	void __cdecl appTrimSpaces(char *)
+	void __cdecl appUnwindf(wchar_t const *,...)
+	wchar_t * __cdecl appI64toa(__int64)
+	wchar_t * __cdecl appItoa(int)
+	wchar_t * __cdecl appStaticString1024(void)
+	wchar_t * __cdecl appStrcat(wchar_t *,wchar_t const *)
+	wchar_t * __cdecl appStrchr(wchar_t const *,int)
+	wchar_t * __cdecl appStrcpy(wchar_t *,wchar_t const *)
+	wchar_t * __cdecl appStristr(wchar_t const *,wchar_t const *)
+	wchar_t * __cdecl appStrncat(wchar_t *,wchar_t const *,int)
+	wchar_t * __cdecl appStrncpy(wchar_t *,wchar_t const *,int)
+	wchar_t * __cdecl appStrrchr(wchar_t const *,int)
+	wchar_t * __cdecl appStrstr(wchar_t const *,wchar_t const *)
+	wchar_t * __cdecl appStrupr(wchar_t *)
+	wchar_t const * __cdecl appBaseDir(void)
+	wchar_t const * __cdecl appCmdLine(void)
+	wchar_t const * __cdecl appComputerName(void)
+	wchar_t const * __cdecl appFExt(wchar_t const *)
+	wchar_t const * __cdecl appFromAnsi(char const *,wchar_t *)
+	wchar_t const * __cdecl appGetSystemErrorMessage(int)
+	wchar_t const * __cdecl appPackage(void)
+	wchar_t const * __cdecl appSpc(int)
+	wchar_t const * __cdecl appStrfind(wchar_t const *,wchar_t const *)
+	wchar_t const * __cdecl appTimestamp(void)
+	wchar_t const * __cdecl appToUnicode(wchar_t const *)
+
+Skipped:
+	__int64 LastGarbageCollectedGTicks
+	_DllMain@12
+	autoclassUArrayProperty
+	autoclassUBoolProperty
+	autoclassUByteProperty
+	autoclassUClass
+	autoclassUClassProperty
+	autoclassUCommandlet
+	autoclassUConst
+	autoclassUDelegateProperty
+	autoclassUEnum
+	autoclassUExporter
+	autoclassUFactory
+	autoclassUField
+	autoclassUFixedArrayProperty
+	autoclassUFloatProperty
+	autoclassUFunction
+	autoclassUIntProperty
+	autoclassULanguage
+	autoclassULinker
+	autoclassULinkerLoad
+	autoclassULinkerSave
+	autoclassUMapProperty
+	autoclassUNameProperty
+	autoclassUObject
+	autoclassUObjectExporterT3D
+	autoclassUObjectProperty
+	autoclassUPackage
+	autoclassUPackageMap
+	autoclassUParamStack
+	autoclassUProperty
+	autoclassUPtrProperty
+	autoclassURefLinkProperty
+	autoclassUState
+	autoclassUStrProperty
+	autoclassUStruct
+	autoclassUStructProperty
+	autoclassUSubsystem
+	autoclassUSystem
+	autoclassUTextBuffer
+	autoclassUTextBufferFactory
+	char * __cdecl winToANSI(char *,wchar_t const *,int)
+	char * __cdecl winToOEM(char *,wchar_t const *,int)
+	class FArchive & __cdecl operator<<(class FArchive &,class FCompactIndex &)
+	class FArchive & __cdecl operator<<(class FArchive &,class FPackageInfo &)
+	class FArchive & __cdecl operator<<(class FArchive &,class FString &)
+	class FArchive & __cdecl operator<<(class FArchive &,struct FLabelEntry &)
+	class FArchive & __cdecl operator<<(class FArchive &,struct FNameEntry &)
+	class FString __cdecl ParseToken(wchar_t const * &,int)
+	const FArchive::`vftable'
+	const FBitReader::`vftable'
+	const FBitWriter::`vftable'
+	const FFrame::`vftable'
+	const FOutputDevice::`vftable'
+	const FSingletonBase::`vftable'
+	const L2Configuration::`vftable'
+	const L2ThreadBase::`vftable'
+	const L2ThreadUtil::`vftable'
+	const L2UserHardWareInformation::`vftable'
+	const TSingleton<class L2Configuration>::`vftable'
+	const TSingleton<class L2ThreadUtil>::`vftable'
+	const TSingleton<class L2UserHardWareInformation>::`vftable'
+	const UArrayProperty::`vftable'
+	const UBoolProperty::`vftable'
+	const UByteProperty::`vftable'
+	const UClass::`vftable'
+	const UClassProperty::`vftable'
+	const UCommandlet::`vftable'
+	const UConst::`vftable'
+	const UDelegateProperty::`vftable'
+	const UEnum::`vftable'
+	const UExporter::`vftable'
+	const UFactory::`vftable'
+	const UField::`vftable'
+	const UFixedArrayProperty::`vftable'
+	const UFloatProperty::`vftable'
+	const UFunction::`vftable'
+	const UIntProperty::`vftable'
+	const ULanguage::`vftable'
+	const ULinker::`vftable'
+	const UMapProperty::`vftable'
+	const UNameProperty::`vftable'
+	const UObject::`vftable'
+	const UObjectExporterT3D::`vftable'
+	const UObjectProperty::`vftable'
+	const UPackage::`vftable'
+	const UPackageMap::`vftable'
+	const UParamStack::`vftable'
+	const UProperty::`vftable'
+	const UPtrProperty::`vftable'
+	const UState::`vftable'
+	const UStrProperty::`vftable'
+	const UStruct::`vftable'
+	const UStructProperty::`vftable'
+	const USubsystem::`vftable'{for `FExec'}
+	const USubsystem::`vftable'{for `UObject'}
+	const UTextBuffer::`vftable'{for `FOutputDevice'}
+	const UTextBuffer::`vftable'{for `UObject'}
+	const UTextBufferFactory::`vftable'
+	float FAR_CLIPPING_PLANE
+	float NEAR_CLIPPING_PLANE
+	GIsSSE
+	GPackage
+	int __cdecl FLineExtentBoxIntersection(class FBox const &,class FVector const &,class FVector const &,class FVector const &,class FVector &,class FVector &,float &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,__int64 &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,class FGuid &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,class FName &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,class FString &,int)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,float &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,int &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,short &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,signed char &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,unsigned __int64 &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,unsigned char &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,unsigned long &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,unsigned short &)
+	int __cdecl Parse(wchar_t const *,wchar_t const *,wchar_t *,int,int)
+	int __cdecl ParseCommand(wchar_t const * *,wchar_t const *)
+	int __cdecl ParseLine(wchar_t const * *,class FString &,int)
+	int __cdecl ParseLine(wchar_t const * *,wchar_t *,int,int)
+	int __cdecl ParseObject(wchar_t const *,wchar_t const *,class UClass *,class UObject * &,class UObject *)
+	int __cdecl ParseParam(wchar_t const *,wchar_t const *)
+	int __cdecl ParsePatialCommand(wchar_t const * *,wchar_t const *)
+	int __cdecl ParseToken(wchar_t const * &,class FString &,int)
+	int __cdecl ParseToken(wchar_t const * &,wchar_t *,int,int)
+	int __cdecl ParseUBOOL(wchar_t const *,wchar_t const *,int &)
+	int __cdecl winGetSizeANSI(wchar_t const *)
+	int __cdecl winGetSizeUNICODE(char const *)
+	intUCommandletexecMain
+	intUObjectexecAbs
+	intUObjectexecAcos
+	intUObjectexecAdd_FloatFloat
+	intUObjectexecAdd_INT64INT64
+	intUObjectexecAdd_IntInt
+	intUObjectexecAdd_RotatorRotator
+	intUObjectexecAdd_VectorVector
+	intUObjectexecAddAdd_Byte
+	intUObjectexecAddAdd_Int
+	intUObjectexecAddAdd_PreByte
+	intUObjectexecAddAdd_PreInt
+	intUObjectexecAddEqual_ByteByte
+	intUObjectexecAddEqual_FloatFloat
+	intUObjectexecAddEqual_INT64INT64
+	intUObjectexecAddEqual_IntInt
+	intUObjectexecAddEqual_RotatorRotator
+	intUObjectexecAddEqual_VectorVector
+	intUObjectexecAddParamFloat
+	intUObjectexecAddParamInt
+	intUObjectexecAddParamINT64
+	intUObjectexecAddParamString
+	intUObjectexecAnd_IntInt
+	intUObjectexecAndAnd_BoolBool
+	intUObjectexecArrayElement
+	intUObjectexecAsc
+	intUObjectexecAsin
+	intUObjectexecAssert
+	intUObjectexecAt_StringString
+	intUObjectexecAtan
+	intUObjectexecBoolToByte
+	intUObjectexecBoolToFloat
+	intUObjectexecBoolToInt
+	intUObjectexecBoolToINT64
+	intUObjectexecBoolToString
+	intUObjectexecBoolVariable
+	intUObjectexecByteConst
+	intUObjectexecByteToBool
+	intUObjectexecByteToFloat
+	intUObjectexecByteToInt
+	intUObjectexecByteToINT64
+	intUObjectexecByteToString
+	intUObjectexecCaps
+	intUObjectexecCase
+	intUObjectexecChr
+	intUObjectexecClamp
+	intUObjectexecClassContext
+	intUObjectexecClassIsChildOf
+	intUObjectexecClockwiseFrom_IntInt
+	intUObjectexecComplement_PreInt
+	intUObjectexecComplementEqual_FloatFloat
+	intUObjectexecComplementEqual_StringString
+	intUObjectexecConcat_StringString
+	intUObjectexecContext
+	intUObjectexecCos
+	intUObjectexecCross_VectorVector
+	intUObjectexecDebugInfo
+	intUObjectexecDefaultVariable
+	intUObjectexecDelegateFunction
+	intUObjectexecDelegateProperty
+	intUObjectexecDisable
+	intUObjectexecDivide_FloatFloat
+	intUObjectexecDivide_INT64INT64
+	intUObjectexecDivide_IntInt
+	intUObjectexecDivide_RotatorFloat
+	intUObjectexecDivide_VectorFloat
+	intUObjectexecDivideEqual_ByteByte
+	intUObjectexecDivideEqual_FloatFloat
+	intUObjectexecDivideEqual_IntFloat
+	intUObjectexecDivideEqual_RotatorFloat
+	intUObjectexecDivideEqual_VectorFloat
+	intUObjectexecDot_VectorVector
+	intUObjectexecDynamicCast
+	intUObjectexecDynamicLoadObject
+	intUObjectexecDynArrayElement
+	intUObjectexecDynArrayInsert
+	intUObjectexecDynArrayLength
+	intUObjectexecDynArrayRemove
+	intUObjectexecEatString
+	intUObjectexecEnable
+	intUObjectexecEndFunctionParms
+	intUObjectexecEqualEqual_BoolBool
+	intUObjectexecEqualEqual_FloatFloat
+	intUObjectexecEqualEqual_INT64INT64
+	intUObjectexecEqualEqual_IntInt
+	intUObjectexecEqualEqual_NameName
+	intUObjectexecEqualEqual_ObjectObject
+	intUObjectexecEqualEqual_RotatorRotator
+	intUObjectexecEqualEqual_StringString
+	intUObjectexecEqualEqual_VectorVector
+	intUObjectexecExp
+	intUObjectexecFalse
+	intUObjectexecFClamp
+	intUObjectexecFinalFunction
+	intUObjectexecFindObject
+	intUObjectexecFloatConst
+	intUObjectexecFloatToBool
+	intUObjectexecFloatToByte
+	intUObjectexecFloatToInt
+	intUObjectexecFloatToINT64
+	intUObjectexecFloatToString
+	intUObjectexecFMax
+	intUObjectexecFMin
+	intUObjectexecFRand
+	intUObjectexecGetAxes
+	intUObjectexecGetEnum
+	intUObjectexecGetParamFloat
+	intUObjectexecGetParamInt
+	intUObjectexecGetParamINT64
+	intUObjectexecGetParamString
+	intUObjectexecGetPropertyText
+	intUObjectexecGetStateName
+	intUObjectexecGetUnAxes
+	intUObjectexecGlobalFunction
+	intUObjectexecGotoLabel
+	intUObjectexecGotoState
+	intUObjectexecGreater_FloatFloat
+	intUObjectexecGreater_INT64INT64
+	intUObjectexecGreater_IntInt
+	intUObjectexecGreater_StringString
+	intUObjectexecGreaterEqual_FloatFloat
+	intUObjectexecGreaterEqual_INT64INT64
+	intUObjectexecGreaterEqual_IntInt
+	intUObjectexecGreaterEqual_StringString
+	intUObjectexecGreaterGreater_IntInt
+	intUObjectexecGreaterGreater_VectorRotator
+	intUObjectexecGreaterGreaterGreater_IntInt
+	intUObjectexecHighNative0
+	intUObjectexecHighNative1
+	intUObjectexecHighNative10
+	intUObjectexecHighNative11
+	intUObjectexecHighNative12
+	intUObjectexecHighNative13
+	intUObjectexecHighNative14
+	intUObjectexecHighNative15
+	intUObjectexecHighNative2
+	intUObjectexecHighNative3
+	intUObjectexecHighNative4
+	intUObjectexecHighNative5
+	intUObjectexecHighNative6
+	intUObjectexecHighNative7
+	intUObjectexecHighNative8
+	intUObjectexecHighNative9
+	intUObjectexecInstanceVariable
+	intUObjectexecInStr
+	intUObjectexecINT64Const
+	intUObjectexecINT64ToBool
+	intUObjectexecINT64ToByte
+	intUObjectexecINT64ToFloat
+	intUObjectexecINT64ToInt
+	intUObjectexecINT64ToString
+	intUObjectexecIntConst
+	intUObjectexecIntConstByte
+	intUObjectexecInterpCurveEval
+	intUObjectexecInterpCurveGetInputDomain
+	intUObjectexecInterpCurveGetOutputRange
+	intUObjectexecIntOne
+	intUObjectexecIntToBool
+	intUObjectexecIntToByte
+	intUObjectexecIntToFloat
+	intUObjectexecIntToINT64
+	intUObjectexecIntToString
+	intUObjectexecIntZero
+	intUObjectexecInvert
+	intUObjectexecIsA
+	intUObjectexecIsInState
+	intUObjectexecIsPlus
+	intUObjectexecIterator
+	intUObjectexecJump
+	intUObjectexecJumpIfNot
+	intUObjectexecLeft
+	intUObjectexecLen
+	intUObjectexecLerp
+	intUObjectexecLess_FloatFloat
+	intUObjectexecLess_INT64INT64
+	intUObjectexecLess_IntInt
+	intUObjectexecLess_StringString
+	intUObjectexecLessEqual_FloatFloat
+	intUObjectexecLessEqual_INT64INT64
+	intUObjectexecLessEqual_IntInt
+	intUObjectexecLessEqual_StringString
+	intUObjectexecLessLess_IntInt
+	intUObjectexecLessLess_VectorRotator
+	intUObjectexecLet
+	intUObjectexecLetBool
+	intUObjectexecLetDelegate
+	intUObjectexecLocalize
+	intUObjectexecLocalVariable
+	intUObjectexecLog
+	intUObjectexecLoge
+	intUObjectexecMax
+	intUObjectexecMetaCast
+	intUObjectexecMid
+	intUObjectexecMin
+	intUObjectexecMin64
+	intUObjectexecMirrorVectorByNormal
+	intUObjectexecMultiply_FloatFloat
+	intUObjectexecMultiply_FloatRotator
+	intUObjectexecMultiply_FloatVector
+	intUObjectexecMultiply_INT64Float
+	intUObjectexecMultiply_INT64INT64
+	intUObjectexecMultiply_IntFloat
+	intUObjectexecMultiply_IntInt
+	intUObjectexecMultiply_RotatorFloat
+	intUObjectexecMultiply_VectorFloat
+	intUObjectexecMultiply_VectorVector
+	intUObjectexecMultiplyEqual_ByteByte
+	intUObjectexecMultiplyEqual_FloatFloat
+	intUObjectexecMultiplyEqual_IntFloat
+	intUObjectexecMultiplyEqual_RotatorFloat
+	intUObjectexecMultiplyEqual_VectorFloat
+	intUObjectexecMultiplyEqual_VectorVector
+	intUObjectexecMultiplyMultiply_FloatFloat
+	intUObjectexecNameConst
+	intUObjectexecNameToBool
+	intUObjectexecNameToString
+	intUObjectexecNativeParm
+	intUObjectexecNew
+	intUObjectexecNoObject
+	intUObjectexecNormal
+	intUObjectexecNormalize
+	intUObjectexecNot_PreBool
+	intUObjectexecNotEqual_BoolBool
+	intUObjectexecNotEqual_FloatFloat
+	intUObjectexecNotEqual_INT64INT64
+	intUObjectexecNotEqual_IntInt
+	intUObjectexecNotEqual_NameName
+	intUObjectexecNotEqual_ObjectObject
+	intUObjectexecNotEqual_RotatorRotator
+	intUObjectexecNotEqual_StringString
+	intUObjectexecNotEqual_VectorVector
+	intUObjectexecNothing
+	intUObjectexecObjectConst
+	intUObjectexecObjectToBool
+	intUObjectexecObjectToString
+	intUObjectexecOr_IntInt
+	intUObjectexecOrOr_BoolBool
+	intUObjectexecOrthoRotation
+	intUObjectexecPercent_FloatFloat
+	intUObjectexecPrimitiveCast
+	intUObjectexecQuatFindBetween
+	intUObjectexecQuatFromAxisAndAngle
+	intUObjectexecQuatInvert
+	intUObjectexecQuatProduct
+	intUObjectexecQuatRotateVector
+	intUObjectexecRand
+	intUObjectexecResetConfig
+	intUObjectexecRight
+	intUObjectexecRotationConst
+	intUObjectexecRotator2Vector
+	intUObjectexecRotatorToBool
+	intUObjectexecRotatorToString
+	intUObjectexecRotatorToVector
+	intUObjectexecRotRand
+	intUObjectexecSaveConfig
+	intUObjectexecSelf
+	intUObjectexecSetPropertyText
+	intUObjectexecSin
+	intUObjectexecSmerp
+	intUObjectexecSqrt
+	intUObjectexecSquare
+	intUObjectexecStaticSaveConfig
+	intUObjectexecStop
+	intUObjectexecStringConst
+	intUObjectexecStringToBool
+	intUObjectexecStringToByte
+	intUObjectexecStringToFloat
+	intUObjectexecStringToInt
+	intUObjectexecStringToINT64
+	intUObjectexecStringToRotator
+	intUObjectexecStringToVector
+	intUObjectexecStructCmpEq
+	intUObjectexecStructCmpNe
+	intUObjectexecStructMember
+	intUObjectexecSubstitute
+	intUObjectexecSubtract_FloatFloat
+	intUObjectexecSubtract_INT64INT64
+	intUObjectexecSubtract_IntInt
+	intUObjectexecSubtract_PreFloat
+	intUObjectexecSubtract_PreInt
+	intUObjectexecSubtract_PreINT64
+	intUObjectexecSubtract_PreVector
+	intUObjectexecSubtract_RotatorRotator
+	intUObjectexecSubtract_VectorVector
+	intUObjectexecSubtractEqual_ByteByte
+	intUObjectexecSubtractEqual_FloatFloat
+	intUObjectexecSubtractEqual_INT64INT64
+	intUObjectexecSubtractEqual_IntInt
+	intUObjectexecSubtractEqual_RotatorRotator
+	intUObjectexecSubtractEqual_VectorVector
+	intUObjectexecSubtractSubtract_Byte
+	intUObjectexecSubtractSubtract_Int
+	intUObjectexecSubtractSubtract_PreByte
+	intUObjectexecSubtractSubtract_PreInt
+	intUObjectexecSwitch
+	intUObjectexecTan
+	intUObjectexecTrue
+	intUObjectexecUnicodeStringConst
+	intUObjectexecVector2Rotator
+	intUObjectexecVectorConst
+	intUObjectexecVectorToBool
+	intUObjectexecVectorToRotator
+	intUObjectexecVectorToString
+	intUObjectexecVirtualFunction
+	intUObjectexecVRand
+	intUObjectexecVSize
+	intUObjectexecWarn
+	intUObjectexecXor_IntInt
+	intUObjectexecXorXor_BoolBool
+	intUParamStackexecGetFloat
+	intUParamStackexecGetInt
+	intUParamStackexecGetString
+	intUParamStackexecPushInt
+	intUParamStackexecPushString
+	private: class TArray<enum L2UserHardWareInformation::E_DISK_CHECK> __thiscall L2UserHardWareInformation::GetDiskCheck(void)
+	private: static class FCriticalSection * FName::NameAllocCS
+	private: static class FCriticalSection * FName::NameCS
+	private: static class FCriticalSection * L2ThreadUtil::ThreadUtilCS
+	private: static class L2Configuration * TSingleton<class L2Configuration>::m_pObject
+	private: static class L2ThreadUtil * TSingleton<class L2ThreadUtil>::m_pObject
+	private: static class L2UserHardWareInformation * TSingleton<class L2UserHardWareInformation>::m_pObject
+	private: static class TArray<int> FName::Available
+	private: static class TArray<struct FNameEntry *> FName::Names
+	private: static class UClass UArrayProperty::PrivateStaticClass
+	private: static class UClass UBoolProperty::PrivateStaticClass
+	private: static class UClass UByteProperty::PrivateStaticClass
+	private: static class UClass UClass::PrivateStaticClass
+	private: static class UClass UClassProperty::PrivateStaticClass
+	private: static class UClass UCommandlet::PrivateStaticClass
+	private: static class UClass UConst::PrivateStaticClass
+	private: static class UClass UDelegateProperty::PrivateStaticClass
+	private: static class UClass UEnum::PrivateStaticClass
+	private: static class UClass UExporter::PrivateStaticClass
+	private: static class UClass UFactory::PrivateStaticClass
+	private: static class UClass UField::PrivateStaticClass
+	private: static class UClass UFixedArrayProperty::PrivateStaticClass
+	private: static class UClass UFloatProperty::PrivateStaticClass
+	private: static class UClass UFunction::PrivateStaticClass
+	private: static class UClass UIntProperty::PrivateStaticClass
+	private: static class UClass ULanguage::PrivateStaticClass
+	private: static class UClass ULinker::PrivateStaticClass
+	private: static class UClass UMapProperty::PrivateStaticClass
+	private: static class UClass UNameProperty::PrivateStaticClass
+	private: static class UClass UObject::PrivateStaticClass
+	private: static class UClass UObjectExporterT3D::PrivateStaticClass
+	private: static class UClass UObjectProperty::PrivateStaticClass
+	private: static class UClass UPackage::PrivateStaticClass
+	private: static class UClass UPackageMap::PrivateStaticClass
+	private: static class UClass UParamStack::PrivateStaticClass
+	private: static class UClass UProperty::PrivateStaticClass
+	private: static class UClass UPtrProperty::PrivateStaticClass
+	private: static class UClass UState::PrivateStaticClass
+	private: static class UClass UStrProperty::PrivateStaticClass
+	private: static class UClass UStruct::PrivateStaticClass
+	private: static class UClass UStructProperty::PrivateStaticClass
+	private: static class UClass USubsystem::PrivateStaticClass
+	private: static class UClass UTextBuffer::PrivateStaticClass
+	private: static class UClass UTextBufferFactory::PrivateStaticClass
+	private: static int FName::Initialized
+	private: static int FName::MoreAvailable
+	private: static struct FNameEntry * * FName::NameHash
+	private: static void __cdecl TSingleton<class L2Configuration>::CreateSingleton(void)
+	private: static void __cdecl TSingleton<class L2ThreadUtil>::CreateSingleton(void)
+	private: static void __cdecl TSingleton<class L2UserHardWareInformation>::CreateSingleton(void)
+	private: void __thiscall L2UserHardWareInformation::GetDiskName(class TArray<class FString> &)
+	protected: __thiscall TSingleton<class L2Configuration>::TSingleton<class L2Configuration>(void)
+	protected: __thiscall TSingleton<class L2ThreadUtil>::TSingleton<class L2ThreadUtil>(void)
+	protected: __thiscall TSingleton<class L2UserHardWareInformation>::TSingleton<class L2UserHardWareInformation>(void)
+	protected: virtual __thiscall TSingleton<class L2Configuration>::~TSingleton<class L2Configuration>(void)
+	protected: virtual __thiscall TSingleton<class L2ThreadUtil>::~TSingleton<class L2ThreadUtil>(void)
+	protected: virtual __thiscall TSingleton<class L2UserHardWareInformation>::~TSingleton<class L2UserHardWareInformation>(void)
+	public: __thiscall FINT64::operator __int64(void)const 
+	public: __thiscall FString::operator int(void)const 
+	public: __thiscall TArray<wchar_t>::TArray<wchar_t>(class TArray<wchar_t> const &)
+	public: __thiscall TArray<wchar_t>::TArray<wchar_t>(enum ENoInit)
+	public: __thiscall TArray<wchar_t>::TArray<wchar_t>(int)
+	public: __thiscall TArray<wchar_t>::TArray<wchar_t>(void)
+	public: __thiscall TArray<wchar_t>::~TArray<wchar_t>(void)
+	public: __thiscall TSingleton<class L2Configuration>::TSingleton<class L2Configuration>(class TSingleton<class L2Configuration> const &)
+	public: __thiscall TSingleton<class L2ThreadUtil>::TSingleton<class L2ThreadUtil>(class TSingleton<class L2ThreadUtil> const &)
+	public: __thiscall TSingleton<class L2UserHardWareInformation>::TSingleton<class L2UserHardWareInformation>(class TSingleton<class L2UserHardWareInformation> const &)
+	public: class FArchive & __thiscall FArchive::operator=(class FArchive const &)
+	public: class FArray & __thiscall FArray::operator=(class FArray const &)
+	public: class FBlowFish & __thiscall FBlowFish::operator=(class FBlowFish const &)
+	public: class FBox & __thiscall FBox::operator+=(class FBox const &)
+	public: class FBox & __thiscall FBox::operator+=(class FVector const &)
+	public: class FBox & __thiscall FBox::operator=(class FBox const &)
+	public: class FBox __thiscall FBox::operator+(class FBox const &)const 
+	public: class FBox __thiscall FBox::operator+(class FVector const &)const 
+	public: class FCoords & __thiscall FCoords::operator*=(class FCoords const &)
+	public: class FCoords & __thiscall FCoords::operator*=(class FRotator const &)
+	public: class FCoords & __thiscall FCoords::operator*=(class FScale const &)
+	public: class FCoords & __thiscall FCoords::operator*=(class FVector const &)
+	public: class FCoords & __thiscall FCoords::operator/=(class FRotator const &)
+	public: class FCoords & __thiscall FCoords::operator/=(class FScale const &)
+	public: class FCoords & __thiscall FCoords::operator/=(class FVector const &)
+	public: class FCoords & __thiscall FCoords::operator=(class FCoords const &)
+	public: class FCoords __thiscall FCoords::operator*(class FCoords const &)const 
+	public: class FCoords __thiscall FCoords::operator*(class FRotator const &)const 
+	public: class FCoords __thiscall FCoords::operator*(class FScale const &)const 
+	public: class FCoords __thiscall FCoords::operator*(class FVector const &)const 
+	public: class FCoords __thiscall FCoords::operator/(class FRotator const &)const 
+	public: class FCoords __thiscall FCoords::operator/(class FScale const &)const 
+	public: class FCoords __thiscall FCoords::operator/(class FVector const &)const 
+	public: class FCriticalSection & __thiscall FCriticalSection::operator=(class FCriticalSection const &)
+	public: class FDependency & __thiscall FDependency::operator=(class FDependency const &)
+	public: class FFileStream & __thiscall FFileStream::operator=(class FFileStream const &)
+	public: class FINT64 & __thiscall FINT64::operator=(__int64)
+	public: class FINT64 & __thiscall FINT64::operator=(class FINT64 const &)
+	public: class FINT64 __thiscall FINT64::operator&=(__int64)
+	public: class FINT64 __thiscall FINT64::operator*(class FINT64 const &)const 
+	public: class FINT64 __thiscall FINT64::operator+(class FINT64 const &)const 
+	public: class FINT64 __thiscall FINT64::operator-(class FINT64 const &)const 
+	public: class FINT64 __thiscall FINT64::operator/(class FINT64 const &)const 
+	public: class FINT64 __thiscall FINT64::operator|=(__int64)
+	public: class FMatrix & __thiscall FMatrix::operator=(class FMatrix const &)
+	public: class FMatrix __thiscall FMatrix::operator*(class FMatrix)const 
+	public: class FMemCache & __thiscall FMemCache::operator=(class FMemCache const &)
+	public: class FMemMark & __thiscall FMemMark::operator=(class FMemMark const &)
+	public: class FMemStack & __thiscall FMemStack::operator=(class FMemStack const &)
+	public: class FMemStackFrame & __thiscall FMemStackFrame::operator=(class FMemStackFrame const &)
+	public: class FMemStackStats & __thiscall FMemStackStats::operator=(class FMemStackStats const &)
+	public: class FName & __thiscall FName::operator=(class FName const &)
+	public: class FOutputDevice & __thiscall FOutputDevice::operator=(class FOutputDevice const &)
+	public: class FPackageInfo & __thiscall FPackageInfo::operator=(class FPackageInfo const &)
+	public: class FParamMap & __thiscall FParamMap::operator=(class FParamMap const &)
+	public: class FQuat & __thiscall FQuat::operator=(class FQuat const &)
+	public: class FQuat __thiscall FQuat::operator*(class FQuat const &)const 
+	public: class FQuat __thiscall FQuat::operator*(float const &)const 
+	public: class FQuat __thiscall FQuat::operator+(class FQuat const &)const 
+	public: class FQuat __thiscall FQuat::operator-(class FQuat const &)const 
+	public: class FQuat __thiscall FQuat::operator-(void)const 
+	public: class FRotator & __thiscall FRotator::operator=(class FRotator const &)
+	public: class FRotator __thiscall FRotator::operator&(int)const 
+	public: class FRotator __thiscall FRotator::operator&=(int)
+	public: class FRotator __thiscall FRotator::operator*(float)const 
+	public: class FRotator __thiscall FRotator::operator*=(float)
+	public: class FRotator __thiscall FRotator::operator+(class FRotator const &)const 
+	public: class FRotator __thiscall FRotator::operator+=(class FRotator const &)
+	public: class FRotator __thiscall FRotator::operator-(class FRotator const &)const 
+	public: class FRotator __thiscall FRotator::operator-=(class FRotator const &)
+	public: class FSingletonBase & __thiscall FSingletonBase::operator=(class FSingletonBase const &)
+	public: class FSphere & __thiscall FSphere::operator=(class FSphere const &)
+	public: class FString & __thiscall FString::operator*=(class FString const &)
+	public: class FString & __thiscall FString::operator*=(wchar_t const *)
+	public: class FString & __thiscall FString::operator+=(class FString const &)
+	public: class FString & __thiscall FString::operator+=(wchar_t const *)
+	public: class FString & __thiscall FString::operator+=(wchar_t)
+	public: class FString & __thiscall FString::operator=(class FString const &)
+	public: class FString & __thiscall FString::operator=(wchar_t const *)
+	public: class FString __thiscall FString::operator*(class FString const &)const 
+	public: class FString __thiscall FString::operator*(wchar_t const *)const 
+	public: class FString __thiscall FString::operator+(class FString const &)
+	public: class FString __thiscall FString::operator+(wchar_t const *)
+	public: class FVariance const __thiscall FVariance::operator=(class FVariance const &)
+	public: class FVector & __thiscall FBox::operator[](int)
+	public: class FVector & __thiscall FVector::operator=(class FVector const &)
+	public: class FVector __thiscall FVector::operator*(class FVector const &)const 
+	public: class FVector __thiscall FVector::operator*(float)const 
+	public: class FVector __thiscall FVector::operator*=(class FVector const &)
+	public: class FVector __thiscall FVector::operator*=(float)
+	public: class FVector __thiscall FVector::operator+(class FVector const &)const 
+	public: class FVector __thiscall FVector::operator+=(class FVector const &)
+	public: class FVector __thiscall FVector::operator-(class FVector const &)const 
+	public: class FVector __thiscall FVector::operator-(void)const 
+	public: class FVector __thiscall FVector::operator-=(class FVector const &)
+	public: class FVector __thiscall FVector::operator/(float)const 
+	public: class FVector __thiscall FVector::operator/=(class FVector const &)
+	public: class FVector __thiscall FVector::operator/=(float)
+	public: class FVector __thiscall FVector::operator^(class FVector const &)const 
+	public: class L2Configuration & __thiscall L2Configuration::operator=(class L2Configuration const &)
+	public: class L2Exception & __thiscall L2Exception::operator=(class L2Exception const &)
+	public: class L2ParamStack & __thiscall L2ParamStack::operator=(class L2ParamStack &)
+	public: class L2ThreadBase & __thiscall L2ThreadBase::operator=(class L2ThreadBase const &)
+	public: class L2ThreadStats & __thiscall L2ThreadStats::operator=(class L2ThreadStats const &)
+	public: class L2ThreadUtil & __thiscall L2ThreadUtil::operator=(class L2ThreadUtil const &)
+	public: class L2UserHardWareInformation & __thiscall L2UserHardWareInformation::operator=(class L2UserHardWareInformation const &)
+	public: class TArray<wchar_t> & __thiscall FString::GetCharArray(void)
+	public: class TArray<wchar_t> & __thiscall TArray<wchar_t>::operator+(class TArray<wchar_t> const &)
+	public: class TArray<wchar_t> & __thiscall TArray<wchar_t>::operator+=(class TArray<wchar_t> const &)
+	public: class TArray<wchar_t> & __thiscall TArray<wchar_t>::operator=(class TArray<wchar_t> const &)
+	public: class TSingleton<class L2Configuration> & __thiscall TSingleton<class L2Configuration>::operator=(class TSingleton<class L2Configuration> const &)
+	public: class TSingleton<class L2ThreadUtil> & __thiscall TSingleton<class L2ThreadUtil>::operator=(class TSingleton<class L2ThreadUtil> const &)
+	public: class TSingleton<class L2UserHardWareInformation> & __thiscall TSingleton<class L2UserHardWareInformation>::operator=(class TSingleton<class L2UserHardWareInformation> const &)
+	public: class UArrayProperty & __thiscall UArrayProperty::operator=(class UArrayProperty const &)
+	public: class UBoolProperty & __thiscall UBoolProperty::operator=(class UBoolProperty const &)
+	public: class UByteProperty & __thiscall UByteProperty::operator=(class UByteProperty const &)
+	public: class UClass & __thiscall UClass::operator=(class UClass const &)
+	public: class UClassProperty & __thiscall UClassProperty::operator=(class UClassProperty const &)
+	public: class UCommandlet & __thiscall UCommandlet::operator=(class UCommandlet const &)
+	public: class UConst & __thiscall UConst::operator=(class UConst const &)
+	public: class UDelegateProperty & __thiscall UDelegateProperty::operator=(class UDelegateProperty const &)
+	public: class UEnum & __thiscall UEnum::operator=(class UEnum const &)
+	public: class UExporter & __thiscall UExporter::operator=(class UExporter const &)
+	public: class UFactory & __thiscall UFactory::operator=(class UFactory const &)
+	public: class UField & __thiscall UField::operator=(class UField const &)
+	public: class UFixedArrayProperty & __thiscall UFixedArrayProperty::operator=(class UFixedArrayProperty const &)
+	public: class UFloatProperty & __thiscall UFloatProperty::operator=(class UFloatProperty const &)
+	public: class UFunction & __thiscall UFunction::operator=(class UFunction const &)
+	public: class UIntProperty & __thiscall UIntProperty::operator=(class UIntProperty const &)
+	public: class ULanguage & __thiscall ULanguage::operator=(class ULanguage const &)
+	public: class ULinker & __thiscall ULinker::operator=(class ULinker const &)
+	public: class UMapProperty & __thiscall UMapProperty::operator=(class UMapProperty const &)
+	public: class UNameProperty & __thiscall UNameProperty::operator=(class UNameProperty const &)
+	public: class UObject & __thiscall UObject::operator=(class UObject const &)
+	public: class UObjectExporterT3D & __thiscall UObjectExporterT3D::operator=(class UObjectExporterT3D const &)
+	public: class UObjectProperty & __thiscall UObjectProperty::operator=(class UObjectProperty const &)
+	public: class UPackage & __thiscall UPackage::operator=(class UPackage const &)
+	public: class UPackageMap & __thiscall UPackageMap::operator=(class UPackageMap const &)
+	public: class UParamStack & __thiscall UParamStack::operator=(class UParamStack const &)
+	public: class UProperty & __thiscall UProperty::operator=(class UProperty const &)
+	public: class UPtrProperty & __thiscall UPtrProperty::operator=(class UPtrProperty const &)
+	public: class UState & __thiscall UState::operator=(class UState const &)
+	public: class UStrProperty & __thiscall UStrProperty::operator=(class UStrProperty const &)
+	public: class UStruct & __thiscall UStruct::operator=(class UStruct const &)
+	public: class UStructProperty & __thiscall UStructProperty::operator=(class UStructProperty const &)
+	public: class USubsystem & __thiscall USubsystem::operator=(class USubsystem const &)
+	public: class UTextBuffer & __thiscall UTextBuffer::operator=(class UTextBuffer const &)
+	public: class UTextBufferFactory & __thiscall UTextBufferFactory::operator=(class UTextBufferFactory const &)
+	public: float & __thiscall FVector::operator[](int)
+	public: float __thiscall FVector::operator|(class FVector const &)const 
+	public: int __thiscall FINT64::operator!=(class FINT64 const &)const 
+	public: int __thiscall FINT64::operator==(class FINT64 const &)const 
+	public: int __thiscall FMatrix::operator!=(class FMatrix &)const 
+	public: int __thiscall FMatrix::operator==(class FMatrix &)const 
+	public: int __thiscall FName::operator!=(class FName const &)const 
+	public: int __thiscall FName::operator==(class FName const &)const 
+	public: int __thiscall FName::operator==(wchar_t const *)const 
+	public: int __thiscall FQuat::operator!=(class FQuat const &)const 
+	public: int __thiscall FRotator::operator!=(class FRotator const &)const 
+	public: int __thiscall FRotator::operator==(class FRotator const &)const 
+	public: int __thiscall FString::operator!=(class FString const &)const 
+	public: int __thiscall FString::operator!=(wchar_t const *)const 
+	public: int __thiscall FString::operator-(class FString const &)const 
+	public: int __thiscall FString::operator<(wchar_t const *)const 
+	public: int __thiscall FString::operator<=(wchar_t const *)const 
+	public: int __thiscall FString::operator==(class FString const &)const 
+	public: int __thiscall FString::operator==(wchar_t const *)const 
+	public: int __thiscall FString::operator>(wchar_t const *)const 
+	public: int __thiscall FString::operator>=(wchar_t const *)const 
+	public: int __thiscall FString::ParseIntoArray(wchar_t const *,class TArray<class FString> *)
+	public: int __thiscall FString::ParserInfoArray(class TArray<class FString> const &,class TArray<class FString> *)const 
+	public: int __thiscall FString::SplitIntoArray(wchar_t const *,class TArray<class FString> *)
+	public: int __thiscall FVector::operator!=(class FVector const &)const 
+	public: int __thiscall FVector::operator==(class FVector const &)const 
+	public: int __thiscall TArray<wchar_t>::Add(int)
+	public: int __thiscall TArray<wchar_t>::AddCompact(int)
+	public: int __thiscall TArray<wchar_t>::AddDynamicItem(wchar_t const &)
+	public: int __thiscall TArray<wchar_t>::AddItem(wchar_t const &)
+	public: int __thiscall TArray<wchar_t>::AddNoAlloc(int &)
+	public: int __thiscall TArray<wchar_t>::AddUniqueDynamicItem(wchar_t const &)
+	public: int __thiscall TArray<wchar_t>::AddUniqueItem(wchar_t const &)
+	public: int __thiscall TArray<wchar_t>::AddZeroed(int)
+	public: int __thiscall TArray<wchar_t>::FindItem(wchar_t const &,int &)const 
+	public: int __thiscall TArray<wchar_t>::FindItemIndex(wchar_t const &)const 
+	public: int __thiscall TArray<wchar_t>::RemoveItem(wchar_t const &)
+	public: static class FCriticalSection * FFileStream::CriticalSection
+	public: static class FCriticalSection * FMemStackFrame::MemStackCS
+	public: static class FFileStream * FFileStream::Instance
+	public: static class FMatrix FMatrix::Identity
+	public: static class L2Configuration & __cdecl TSingleton<class L2Configuration>::GetObj(void)
+	public: static class L2Configuration * __cdecl TSingleton<class L2Configuration>::GetObjPtr(void)
+	public: static class L2ThreadUtil & __cdecl TSingleton<class L2ThreadUtil>::GetObj(void)
+	public: static class L2ThreadUtil * __cdecl TSingleton<class L2ThreadUtil>::GetObjPtr(void)
+	public: static class L2UserHardWareInformation & __cdecl TSingleton<class L2UserHardWareInformation>::GetObj(void)
+	public: static class L2UserHardWareInformation * __cdecl TSingleton<class L2UserHardWareInformation>::GetObjPtr(void)
+	public: static int const FRotator::CCWRotate135
+	public: static int const FRotator::CCWRotate180
+	public: static int const FRotator::CCWRotate225
+	public: static int const FRotator::CCWRotate270
+	public: static int const FRotator::CCWRotate315
+	public: static int const FRotator::CCWRotate360
+	public: static int const FRotator::CCWRotate45
+	public: static int const FRotator::CCWRotate90
+	public: static int const FRotator::CWRotate135
+	public: static int const FRotator::CWRotate180
+	public: static int const FRotator::CWRotate225
+	public: static int const FRotator::CWRotate270
+	public: static int const FRotator::CWRotate315
+	public: static int const FRotator::CWRotate360
+	public: static int const FRotator::CWRotate45
+	public: static int const FRotator::CWRotate90
+	public: static int const FRotator::RotateZero
+	public: static int FFileStream::Destroyed
+	public: static int FFileStream::MaxStreams
+	public: static int FFileStream::StreamIndex
+	public: static struct FStream * FFileStream::Streams
+	public: static struct FTaggedMemory * FMemStackFrame::UnusedChunks
+	public: static void * __cdecl UArrayProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UArrayProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UBoolProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UBoolProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UByteProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UByteProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UClass::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UClass::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UClassProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UClassProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UCommandlet::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UCommandlet::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UConst::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UConst::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UDelegateProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UDelegateProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UEnum::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UEnum::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UExporter::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UExporter::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UFactory::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UFactory::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UField::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UField::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UFixedArrayProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UFixedArrayProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UFloatProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UFloatProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UFunction::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UFunction::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UIntProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UIntProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl ULanguage::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl ULanguage::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl ULinker::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl ULinker::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UMapProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UMapProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UNameProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UNameProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UObject::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UObject::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UObjectExporterT3D::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UObjectExporterT3D::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UObjectProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UObjectProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UPackage::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UPackage::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UPackageMap::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UPackageMap::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UParamStack::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UParamStack::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UPtrProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UPtrProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UState::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UState::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UStrProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UStrProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UStruct::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UStruct::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UStructProperty::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UStructProperty::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl USubsystem::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl USubsystem::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UTextBuffer::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UTextBuffer::operator new(unsigned int,enum EInternal *)
+	public: static void * __cdecl UTextBufferFactory::operator new(unsigned int,class UObject *,wchar_t const *,unsigned long)
+	public: static void * __cdecl UTextBufferFactory::operator new(unsigned int,enum EInternal *)
+	public: static void __cdecl TSingleton<class L2Configuration>::DestroySingleton(void)
+	public: static void __cdecl TSingleton<class L2ThreadUtil>::DestroySingleton(void)
+	public: static void __cdecl TSingleton<class L2UserHardWareInformation>::DestroySingleton(void)
+	public: static void __cdecl UArrayProperty::operator delete(void *)
+	public: static void __cdecl UArrayProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UArrayProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UArrayProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UArrayProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UBoolProperty::operator delete(void *)
+	public: static void __cdecl UBoolProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UBoolProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UBoolProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UBoolProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UByteProperty::operator delete(void *)
+	public: static void __cdecl UByteProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UByteProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UByteProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UByteProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UClass::operator delete(void *)
+	public: static void __cdecl UClass::operator delete(void *,class UObject *)
+	public: static void __cdecl UClass::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UClass::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UClass::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UClassProperty::operator delete(void *)
+	public: static void __cdecl UClassProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UClassProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UClassProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UClassProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UCommandlet::operator delete(void *)
+	public: static void __cdecl UCommandlet::operator delete(void *,class UObject *)
+	public: static void __cdecl UCommandlet::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UCommandlet::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UCommandlet::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UConst::operator delete(void *)
+	public: static void __cdecl UConst::operator delete(void *,class UObject *)
+	public: static void __cdecl UConst::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UConst::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UConst::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UDelegateProperty::operator delete(void *)
+	public: static void __cdecl UDelegateProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UDelegateProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UDelegateProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UDelegateProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UEnum::operator delete(void *)
+	public: static void __cdecl UEnum::operator delete(void *,class UObject *)
+	public: static void __cdecl UEnum::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UEnum::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UEnum::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UExporter::operator delete(void *)
+	public: static void __cdecl UExporter::operator delete(void *,class UObject *)
+	public: static void __cdecl UExporter::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UExporter::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UExporter::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UFactory::operator delete(void *)
+	public: static void __cdecl UFactory::operator delete(void *,class UObject *)
+	public: static void __cdecl UFactory::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UFactory::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UFactory::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UField::operator delete(void *)
+	public: static void __cdecl UField::operator delete(void *,class UObject *)
+	public: static void __cdecl UField::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UField::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UField::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UFixedArrayProperty::operator delete(void *)
+	public: static void __cdecl UFixedArrayProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UFixedArrayProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UFixedArrayProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UFixedArrayProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UFloatProperty::operator delete(void *)
+	public: static void __cdecl UFloatProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UFloatProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UFloatProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UFloatProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UFunction::operator delete(void *)
+	public: static void __cdecl UFunction::operator delete(void *,class UObject *)
+	public: static void __cdecl UFunction::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UFunction::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UFunction::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UIntProperty::operator delete(void *)
+	public: static void __cdecl UIntProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UIntProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UIntProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UIntProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl ULanguage::operator delete(void *)
+	public: static void __cdecl ULanguage::operator delete(void *,class UObject *)
+	public: static void __cdecl ULanguage::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl ULanguage::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl ULanguage::operator delete(void *,enum EInternal *)
+	public: static void __cdecl ULinker::operator delete(void *)
+	public: static void __cdecl ULinker::operator delete(void *,class UObject *)
+	public: static void __cdecl ULinker::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl ULinker::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl ULinker::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UMapProperty::operator delete(void *)
+	public: static void __cdecl UMapProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UMapProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UMapProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UMapProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UNameProperty::operator delete(void *)
+	public: static void __cdecl UNameProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UNameProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UNameProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UNameProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UObject::operator delete(void *)
+	public: static void __cdecl UObject::operator delete(void *,class UObject *)
+	public: static void __cdecl UObject::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UObject::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UObject::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UObjectExporterT3D::operator delete(void *)
+	public: static void __cdecl UObjectExporterT3D::operator delete(void *,class UObject *)
+	public: static void __cdecl UObjectExporterT3D::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UObjectExporterT3D::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UObjectExporterT3D::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UObjectProperty::operator delete(void *)
+	public: static void __cdecl UObjectProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UObjectProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UObjectProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UObjectProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UPackage::operator delete(void *)
+	public: static void __cdecl UPackage::operator delete(void *,class UObject *)
+	public: static void __cdecl UPackage::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UPackage::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UPackage::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UPackageMap::operator delete(void *)
+	public: static void __cdecl UPackageMap::operator delete(void *,class UObject *)
+	public: static void __cdecl UPackageMap::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UPackageMap::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UPackageMap::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UParamStack::operator delete(void *)
+	public: static void __cdecl UParamStack::operator delete(void *,class UObject *)
+	public: static void __cdecl UParamStack::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UParamStack::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UParamStack::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UProperty::operator delete(void *)
+	public: static void __cdecl UProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UPtrProperty::operator delete(void *)
+	public: static void __cdecl UPtrProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UPtrProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UPtrProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UPtrProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UState::operator delete(void *)
+	public: static void __cdecl UState::operator delete(void *,class UObject *)
+	public: static void __cdecl UState::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UState::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UState::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UStrProperty::operator delete(void *)
+	public: static void __cdecl UStrProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UStrProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UStrProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UStrProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UStruct::operator delete(void *)
+	public: static void __cdecl UStruct::operator delete(void *,class UObject *)
+	public: static void __cdecl UStruct::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UStruct::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UStruct::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UStructProperty::operator delete(void *)
+	public: static void __cdecl UStructProperty::operator delete(void *,class UObject *)
+	public: static void __cdecl UStructProperty::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UStructProperty::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UStructProperty::operator delete(void *,enum EInternal *)
+	public: static void __cdecl USubsystem::operator delete(void *)
+	public: static void __cdecl USubsystem::operator delete(void *,class UObject *)
+	public: static void __cdecl USubsystem::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl USubsystem::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl USubsystem::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UTextBuffer::operator delete(void *)
+	public: static void __cdecl UTextBuffer::operator delete(void *,class UObject *)
+	public: static void __cdecl UTextBuffer::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UTextBuffer::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UTextBuffer::operator delete(void *,enum EInternal *)
+	public: static void __cdecl UTextBufferFactory::operator delete(void *)
+	public: static void __cdecl UTextBufferFactory::operator delete(void *,class UObject *)
+	public: static void __cdecl UTextBufferFactory::operator delete(void *,class UObject *,wchar_t const *)
+	public: static void __cdecl UTextBufferFactory::operator delete(void *,class UObject *,wchar_t const *,unsigned long)
+	public: static void __cdecl UTextBufferFactory::operator delete(void *,enum EInternal *)
+	public: struct FBitReader & __thiscall FBitReader::operator=(struct FBitReader const &)
+	public: struct FBitWriter & __thiscall FBitWriter::operator=(struct FBitWriter const &)
+	public: struct FBitWriterMark & __thiscall FBitWriterMark::operator=(struct FBitWriterMark const &)
+	public: struct FFrame & __thiscall FFrame::operator=(struct FFrame const &)
+	public: struct FGenerationInfo & __thiscall FGenerationInfo::operator=(struct FGenerationInfo const &)
+	public: struct FLabelEntry & __thiscall FLabelEntry::operator=(struct FLabelEntry const &)
+	public: struct FPackageFileSummary & __thiscall FPackageFileSummary::operator=(struct FPackageFileSummary const &)
+	public: virtual class FArchive & __thiscall FArchive::operator<<(class FName &)
+	public: virtual class FArchive & __thiscall FArchive::operator<<(class UObject * &)
+	public: void __thiscall FBitReader::`default constructor closure'(void)
+	public: void __thiscall FInterpCurve::operator=(class FInterpCurve const &)
+	public: void __thiscall FMatrix::operator*=(class FMatrix const &)
+	public: void __thiscall FPackageInfo::`default constructor closure'(void)
+	public: void __thiscall L2ParamStack::`default constructor closure'(void)
+	public: void __thiscall TArray<wchar_t>::CountBytes(class FArchive &)
+	public: void __thiscall TArray<wchar_t>::Empty(int)
+	public: void __thiscall TArray<wchar_t>::Insert(int,int)
+	public: void __thiscall TArray<wchar_t>::InsertZeroed(int,int)
+	public: void __thiscall TArray<wchar_t>::Process(int)
+	public: void __thiscall TArray<wchar_t>::Remove(int,int)
+	public: void __thiscall TArray<wchar_t>::Reserve(int)
+	public: void __thiscall TArray<wchar_t>::Shrink(void)
+	public: void __thiscall UTextBuffer::`default constructor closure'(void)
+	public: wchar_t & __thiscall FString::operator[](int)
+	public: wchar_t & __thiscall TArray<wchar_t>::Last(int)
+	public: wchar_t & __thiscall TArray<wchar_t>::operator()(int)
+	public: wchar_t __thiscall TArray<wchar_t>::Pop(void)
+	public: wchar_t const & __thiscall FString::operator[](int)const 
+	public: wchar_t const & __thiscall TArray<wchar_t>::Last(int)const 
+	public: wchar_t const & __thiscall TArray<wchar_t>::operator()(int)const 
+	public: wchar_t const * __thiscall FName::operator*(void)const 
+	public: wchar_t const * __thiscall FString::operator*(void)const 
+	void __cdecl debugf(enum EName,wchar_t const *,...)
+	void __cdecl debugf(wchar_t const *,...)
+	void __cdecl EdClearLoadErrors(void)
+	void __cdecl ParseNext(wchar_t const * *)
+	void __cdecl ResetError(void)
+	wchar_t * __cdecl winAnsiToTCHAR(char const *)
+	wchar_t * __cdecl winToUNICODE(wchar_t *,char const *,int)
+	wchar_t * `wchar_t * __cdecl winAnsiToTCHAR(char const *)'::`2'::Buffer
+	wchar_t const * __cdecl Localize(char const *,char const *,wchar_t const *,wchar_t const *,int)
+	wchar_t const * __cdecl Localize(wchar_t const *,wchar_t const *,wchar_t const *,wchar_t const *,int)
+	wchar_t const * __cdecl LocalizeError(char const *,wchar_t const *,wchar_t const *)
+	wchar_t const * __cdecl LocalizeError(wchar_t const *,wchar_t const *,wchar_t const *)
+	wchar_t const * __cdecl LocalizeGeneral(char const *,wchar_t const *,wchar_t const *)
+	wchar_t const * __cdecl LocalizeGeneral(wchar_t const *,wchar_t const *,wchar_t const *)
+	wchar_t const * __cdecl LocalizeProgress(char const *,wchar_t const *,wchar_t const *)
+	wchar_t const * __cdecl LocalizeProgress(wchar_t const *,wchar_t const *,wchar_t const *)
+	wchar_t const * __cdecl ReadToken(wchar_t const *,wchar_t *,int,int,int)
+	wchar_t const * const `public: int __thiscall FString::ParseIntoArray(wchar_t const *,class TArray<class FString> *)'::`3'::__FUNC_NAME__
+	wchar_t const * const `public: int __thiscall FString::ParserInfoArray(class TArray<class FString> const &,class TArray<class FString> *)const '::`3'::__FUNC_NAME__
+	wchar_t const * const `public: int __thiscall FString::SplitIntoArray(wchar_t const *,class TArray<class FString> *)'::`3'::__FUNC_NAME__

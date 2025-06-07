@@ -1,0 +1,3 @@
+rootProject.name = 'xdat_editor'
+
+include 'commons:io', 'commons:l2resources', 'editor', 'schema'

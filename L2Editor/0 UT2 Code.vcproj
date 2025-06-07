@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding = "Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="7.00"
+	Name="0 UT2 Code"
+	ProjectGUID="{012F6AE2-4287-43AE-9B20-F70E1260F077}"
+	SccProjectName="UT2 Code"
+	SccAuxPath=""
+	SccLocalPath="."
+	SccProvider="MSSCCI:Perforce SCM"
+	Keyword="MakeFileProj">
+	<Platforms>
+		<Platform
+			Name="Win32"/>
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			IntermediateDirectory="Debug"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="System\UccDepend.exe System\Default.ini"
+				ReBuildCommandLine="System\UccDepend.exe System\Default.ini -full"
+				CleanCommandLine="if exist system\*.u del System\*.u"
+				Output="System\UT2003.exe"/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			IntermediateDirectory="Release"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="System\UccDepend.exe System\Default.ini"
+				ReBuildCommandLine="System\UccDepend.exe System\Default.ini -full"
+				CleanCommandLine="if exist system\*.u del System\*.u"
+				Output="System\UT2003.exe"/>
+		</Configuration>
+		<Configuration
+			Name="DebugSlow|Win32"
+			OutputDirectory="DebugSlow"
+			IntermediateDirectory="DebugSlow"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="System\UccDepend.exe System\Default.ini"
+				ReBuildCommandLine="System\UccDepend.exe System\Default.ini -full"
+				CleanCommandLine="if exist system\*.u del System\*.u"
+				Output="System\UT2003.exe"/>
+		</Configuration>
+		<Configuration
+			Name="ReleaseFast|Win32"
+			OutputDirectory="ReleaseFast"
+			IntermediateDirectory="ReleaseFast"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="System\UccDepend.exe System\Default.ini"
+				ReBuildCommandLine="System\UccDepend.exe System\Default.ini -full"
+				CleanCommandLine="if exist system\*.u del System\*.u"
+				Output="System\UT2003.exe"/>
+		</Configuration>
+		<Configuration
+			Name="Profiling|Win32"
+			OutputDirectory="Profiling"
+			IntermediateDirectory="Profiling"
+			ConfigurationType="0">
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="System\UccDepend.exe System\Default.ini"
+				ReBuildCommandLine="System\UccDepend.exe System\Default.ini -full"
+				CleanCommandLine="if exist system\*.u del System\*.u"
+				Output="System\UT2003.exe"/>
+		</Configuration>
+	</Configurations>
+	<Files>
+		<File
+			RelativePath="todo.txt">
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

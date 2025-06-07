@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="UnrealScript|Win32">
+      <Configuration>UnrealScript</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName>Gameplay</SccProjectName>
+    <SccAuxPath />
+    <SccLocalPath>..</SccLocalPath>
+    <SccProvider>MSSCCI:Perforce SCM</SccProvider>
+    <ProjectGuid>{CB0676C7-F9BF-47E6-9BEE-894C8E440DE9}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnrealScript|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120_xp</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UnrealScript|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UnrealScript|Win32'">
+    <OutDir>.\.\</OutDir>
+    <IntDir>.\.\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UnrealScript|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;GAMEPLAY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader />
+      <PrecompiledHeaderOutputFile>.\./Gameplay.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>.\./</AssemblerListingLocation>
+      <ObjectFileName>.\./</ObjectFileName>
+      <ProgramDataBaseFileName>.\./</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>.\./Gameplay.dll</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\./Gameplay.pdb</ProgramDatabaseFile>
+      <ImportLibrary>.\./Gameplay.lib</ImportLibrary>
+    </Link>
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\./Gameplay.tlb</TypeLibraryName>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\classes\ActionMessage.uc" />
+    <None Include="..\classes\ActionMessage_BR.uc" />
+    <None Include="..\classes\ActionMessage_CTF.uc" />
+    <None Include="..\classes\ActionMessage_DM.uc" />
+    <None Include="..\Classes\Action_CHANGELEVEL.uc" />
+    <None Include="..\Classes\Action_CHANGESCRIPT.uc" />
+    <None Include="..\classes\Action_CHANGETEAM.uc" />
+    <None Include="..\Classes\Action_CROUCH.uc" />
+    <None Include="..\Classes\Action_DAMAGEINSTIGATOR.uc" />
+    <None Include="..\Classes\Action_DESTROYPAWN.uc" />
+    <None Include="..\Classes\Action_DISPLAYMESSAGE.uc" />
+    <None Include="..\Classes\Action_ENDSECTION.uc" />
+    <None Include="..\Classes\Action_FADEVIEW.uc" />
+    <None Include="..\Classes\ACTION_FinishRotation.uc" />
+    <None Include="..\classes\ACTION_FireWeapon.uc" />
+    <None Include="..\Classes\Action_FORCEMOVETOPOINT.uc" />
+    <None Include="..\Classes\ACTION_Freeze.uc" />
+    <None Include="..\Classes\ACTION_FreezeOnAnimEnd.uc" />
+    <None Include="..\Classes\Action_GOTOACTION.uc" />
+    <None Include="..\Classes\Action_IFCONDITION.uc" />
+    <None Include="..\Classes\Action_IFRANDOMPCT.uc" />
+    <None Include="..\classes\ACTION_Jump.uc" />
+    <None Include="..\Classes\Action_KILLINSTIGATOR.uc" />
+    <None Include="..\Classes\Action_LEAVESEQUENCE.uc" />
+    <None Include="..\classes\ACTION_LocalizedMessage.uc" />
+    <None Include="..\Classes\Action_MOVETOPLAYER.uc" />
+    <None Include="..\Classes\Action_MOVETOPOINT.uc" />
+    <None Include="..\Classes\Action_PLAYAMBIENTSOUND.uc" />
+    <None Include="..\Classes\Action_PLAYANIM.uc" />
+    <None Include="..\Classes\Action_PLAYLOCALSOUND.uc" />
+    <None Include="..\Classes\Action_PLAYMUSIC.uc" />
+    <None Include="..\Classes\Action_PLAYSOUND.uc" />
+    <None Include="..\Classes\Action_RUN.uc" />
+    <None Include="..\Classes\Action_SETALERTNESS.uc" />
+    <None Include="..\classes\ACTION_SetCorona.uc" />
+    <None Include="..\Classes\Action_SETVIEWTARGET.uc" />
+    <None Include="..\Classes\ACTION_ShootTarget.uc" />
+    <None Include="..\Classes\Action_STOPANIMATION.uc" />
+    <None Include="..\Classes\ACTION_StopShooting.uc" />
+    <None Include="..\Classes\Action_TELEPORTTOPOINT.uc" />
+    <None Include="..\Classes\ACTION_ThrowWeapon.uc" />
+    <None Include="..\Classes\ACTION_TriggerEvent.uc" />
+    <None Include="..\Classes\Action_TURNTOWARDPLAYER.uc" />
+    <None Include="..\Classes\Action_WAITFORANIMEND.uc" />
+    <None Include="..\Classes\Action_WAITFOREVENT.uc" />
+    <None Include="..\Classes\Action_WAITFORPLAYER.uc" />
+    <None Include="..\Classes\Action_WAITFORTIMER.uc" />
+    <None Include="..\Classes\Action_WALK.uc" />
+    <None Include="..\Classes\AnimNotify_FireWeapon.uc" />
+    <None Include="..\Classes\BlockedPath.uc" />
+    <None Include="..\classes\Burned.uc" />
+    <None Include="..\Classes\Corroded.uc" />
+    <None Include="..\Classes\Counter.uc" />
+    <None Include="..\Classes\CriticalEventPlus.uc" />
+    <None Include="..\Classes\Depressurized.uc" />
+    <None Include="..\Classes\Drowned.uc" />
+    <None Include="..\Classes\EFFECT_Alley.uc" />
+    <None Include="..\Classes\EFFECT_Arena.uc" />
+    <None Include="..\Classes\EFFECT_Auditorium.uc" />
+    <None Include="..\Classes\EFFECT_Bathroom.uc" />
+    <None Include="..\Classes\EFFECT_CarpetedHallway.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_ALCOVE.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_COURTYARD.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_CUPBOARD.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_HALL.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_LARGEROOM.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_LONGPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_MEDIUMROOM.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_SHORTPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_CASTLE_SMALLROOM.uc" />
+    <None Include="..\Classes\EFFECT_Cave.uc" />
+    <None Include="..\classes\EFFECT_CHAPEL.uc" />
+    <None Include="..\Classes\EFFECT_City.uc" />
+    <None Include="..\classes\EFFECT_CITY_ABANDONED.uc" />
+    <None Include="..\classes\EFFECT_CITY_LIBRARY.uc" />
+    <None Include="..\classes\EFFECT_CITY_MUSEUM.uc" />
+    <None Include="..\classes\EFFECT_CITY_STREETS.uc" />
+    <None Include="..\classes\EFFECT_CITY_SUBWAY.uc" />
+    <None Include="..\classes\EFFECT_CITY_UNDERPASS.uc" />
+    <None Include="..\Classes\EFFECT_ConcertHall.uc" />
+    <None Include="..\Classes\EFFECT_Dizzy.uc" />
+    <None Include="..\classes\EFFECT_DOME_SAINTPAULS.uc" />
+    <None Include="..\classes\EFFECT_DOME_TOMB.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_COMMENTATOR.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_EMPTYGRANDSTAND.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_FULLGRANDSTAND.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_INCAR_LUXURY.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_INCAR_RACER.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_INCAR_SPORTS.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_PITGARAGE.uc" />
+    <None Include="..\classes\EFFECT_DRIVING_TUNNEL.uc" />
+    <None Include="..\Classes\EFFECT_Drugged.uc" />
+    <None Include="..\classes\EFFECT_DUSTYROOM.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_ALCOVE.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_COURTYARD.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_CUPBOARD.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_HALL.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_LARGEROOM.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_LONGPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_MEDIUMROOM.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_SHORTPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_FACTORY_SMALLROOM.uc" />
+    <None Include="..\Classes\EFFECT_Forest.uc" />
+    <None Include="..\Classes\EFFECT_Hallway.uc" />
+    <None Include="..\Classes\EFFECT_Hangar.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_ALCOVE.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_COURTYARD.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_CUPBOARD.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_HALL.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_LARGEROOM.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_LONGPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_MEDIUMROOM.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_SHORTPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_ICEPALACE_SMALLROOM.uc" />
+    <None Include="..\Classes\EFFECT_Livingroom.uc" />
+    <None Include="..\classes\EFFECT_MOOD_HEAVEN.uc" />
+    <None Include="..\classes\EFFECT_MOOD_HELL.uc" />
+    <None Include="..\classes\EFFECT_MOOD_MEMORY.uc" />
+    <None Include="..\Classes\EFFECT_Mountains.uc" />
+    <None Include="..\Classes\EFFECT_None.uc" />
+    <None Include="..\classes\EFFECT_OUTDOORS_BACKYARD.uc" />
+    <None Include="..\classes\EFFECT_OUTDOORS_CREEK.uc" />
+    <None Include="..\classes\EFFECT_OUTDOORS_DEEPCANYON.uc" />
+    <None Include="..\classes\EFFECT_OUTDOORS_ROLLINGPLAINS.uc" />
+    <None Include="..\classes\EFFECT_OUTDOORS_VALLEY.uc" />
+    <None Include="..\Classes\EFFECT_PaddedCell.uc" />
+    <None Include="..\Classes\EFFECT_Parkinglot.uc" />
+    <None Include="..\classes\EFFECT_PIPE_LARGE.uc" />
+    <None Include="..\classes\EFFECT_PIPE_LONGTHIN.uc" />
+    <None Include="..\classes\EFFECT_PIPE_RESONANT.uc" />
+    <None Include="..\classes\EFFECT_PIPE_SMALL.uc" />
+    <None Include="..\classes\EFFECT_PREFAB_CARAVAN.uc" />
+    <None Include="..\classes\EFFECT_PREFAB_OUTHOUSE.uc" />
+    <None Include="..\classes\EFFECT_PREFAB_PRACTISEROOM.uc" />
+    <None Include="..\classes\EFFECT_PREFAB_SCHOOLROOM.uc" />
+    <None Include="..\classes\EFFECT_PREFAB_WORKSHOP.uc" />
+    <None Include="..\Classes\EFFECT_Psychotic.uc" />
+    <None Include="..\Classes\EFFECT_Quarry.uc" />
+    <None Include="..\Classes\EFFECT_Room.uc" />
+    <None Include="..\Classes\EFFECT_Sewerpipe.uc" />
+    <None Include="..\classes\EFFECT_SMALLWATERROOM.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_ALCOVE.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_CUPBOARD.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_HALL.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_LARGEROOM.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_LONGPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_MEDIUMROOM.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_SHORTPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_SPACESTATION_SMALLROOM.uc" />
+    <None Include="..\classes\EFFECT_SPORT_EMPTYSTADIUM.uc" />
+    <None Include="..\classes\EFFECT_SPORT_FULLSTADIUM.uc" />
+    <None Include="..\classes\EFFECT_SPORT_GYMNASIUM.uc" />
+    <None Include="..\classes\EFFECT_SPORT_SMALLSWIMMINGPOOL.uc" />
+    <None Include="..\classes\EFFECT_SPORT_SQUASHCOURT.uc" />
+    <None Include="..\classes\EFFECT_SPORT_STADIUMTANNOY.uc" />
+    <None Include="..\Classes\EFFECT_StoneCorridor.uc" />
+    <None Include="..\Classes\EFFECT_Stoneroom.uc" />
+    <None Include="..\Classes\EFFECT_Underwater.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_ALCOVE.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_COURTYARD.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_CUPBOARD.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_HALL.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_LARGEROOM.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_LONGPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_MEDIUMROOM.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_SHORTPASSAGE.uc" />
+    <None Include="..\classes\EFFECT_WOODEN_SMALLROOM.uc" />
+    <None Include="..\Classes\FearSpot.uc" />
+    <None Include="..\Classes\LatentScriptedAction.uc" />
+    <None Include="..\classes\MessageTextureClient.uc" />
+    <None Include="..\classes\PressureVolume.uc" />
+    <None Include="..\classes\RedirectionTrigger.uc" />
+    <None Include="..\Classes\RockingSkyZoneInfo.uc" />
+    <None Include="..\Classes\ScaledSprite.uc" />
+    <None Include="..\Classes\ScriptedAction.uc" />
+    <None Include="..\classes\ScriptedController.uc" />
+    <None Include="..\classes\ScriptedSequence.uc" />
+    <None Include="..\Classes\ScriptedTrigger.uc" />
+    <None Include="..\Classes\ScriptedTriggerController.uc" />
+    <None Include="..\Classes\SpectatorCam.uc" />
+    <None Include="..\Classes\Spotlight.uc" />
+    <None Include="..\Classes\Sunlight.uc" />
+    <None Include="..\Classes\TeamTrigger.uc" />
+    <None Include="..\Classes\TriggeredCondition.uc" />
+    <None Include="..\Classes\TriggeredPlayerStart.uc" />
+    <None Include="..\Classes\TriggerLight.uc" />
+    <None Include="..\Classes\ViewShaker.uc" />
+    <None Include="..\classes\WaterVolume.uc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

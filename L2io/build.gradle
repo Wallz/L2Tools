@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'com.github.acmi'
+version '2.2.6'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+tasks.withType(Test) {
+    systemProperty 'file.encoding', 'UTF-8'
+}
+
+java {
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = 'l2io'
+            from components.java
+            pom {
+                name = 'L2io'
+                description = 'Lineage 2 client files I/O library.'
+                url = 'https://github.com/acmi/L2io'
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                        distribution = 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'acmi'
+                        name = 'Aleksei Sazonov'
+                        email = 'acmi831@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/acmi/L2io.git'
+                    developerConnection = 'scm:git:git://github.com/acmi/L2io.git'
+                    url = 'https://github.com/acmi/L2io'
+                }
+            }
+        }
+    }
+}

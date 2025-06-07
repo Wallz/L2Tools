@@ -1,0 +1,575 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{c068f86f-9c5f-422c-ba75-518bc3bca222}</UniqueIdentifier>
+      <Extensions>*.uc</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Classes\ACTION_FinishRotation.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ACTION_FireWeapon.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ACTION_Freeze.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ACTION_FreezeOnAnimEnd.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ACTION_Jump.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ACTION_LocalizedMessage.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ACTION_SetCorona.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ACTION_ShootTarget.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ACTION_StopShooting.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ACTION_ThrowWeapon.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ACTION_TriggerEvent.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ActionMessage.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ActionMessage_BR.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ActionMessage_CTF.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ActionMessage_DM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_CHANGELEVEL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_CHANGESCRIPT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\Action_CHANGETEAM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_CROUCH.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_DAMAGEINSTIGATOR.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_DESTROYPAWN.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_DISPLAYMESSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_ENDSECTION.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_FADEVIEW.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_FORCEMOVETOPOINT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_GOTOACTION.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_IFCONDITION.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_IFRANDOMPCT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_KILLINSTIGATOR.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_LEAVESEQUENCE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_MOVETOPLAYER.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_MOVETOPOINT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_PLAYAMBIENTSOUND.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_PLAYANIM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_PLAYLOCALSOUND.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_PLAYMUSIC.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_PLAYSOUND.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_RUN.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_SETALERTNESS.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_SETVIEWTARGET.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_STOPANIMATION.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_TELEPORTTOPOINT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_TURNTOWARDPLAYER.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_WAITFORANIMEND.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_WAITFOREVENT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_WAITFORPLAYER.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_WAITFORTIMER.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Action_WALK.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\AnimNotify_FireWeapon.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\BlockedPath.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\Burned.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Corroded.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Counter.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\CriticalEventPlus.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Depressurized.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Drowned.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Alley.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Arena.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Auditorium.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Bathroom.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_ALCOVE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_COURTYARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_CUPBOARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_HALL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_LARGEROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_LONGPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_MEDIUMROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_SHORTPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CASTLE_SMALLROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CHAPEL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CITY_ABANDONED.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CITY_LIBRARY.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CITY_MUSEUM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CITY_STREETS.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CITY_SUBWAY.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_CITY_UNDERPASS.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_CarpetedHallway.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Cave.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_City.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_ConcertHall.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DOME_SAINTPAULS.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DOME_TOMB.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_COMMENTATOR.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_EMPTYGRANDSTAND.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_FULLGRANDSTAND.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_INCAR_LUXURY.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_INCAR_RACER.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_INCAR_SPORTS.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_PITGARAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DRIVING_TUNNEL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_DUSTYROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Dizzy.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Drugged.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_ALCOVE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_COURTYARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_CUPBOARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_HALL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_LARGEROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_LONGPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_MEDIUMROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_SHORTPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_FACTORY_SMALLROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Forest.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Hallway.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Hangar.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_ALCOVE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_COURTYARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_CUPBOARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_HALL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_LARGEROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_LONGPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_MEDIUMROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_SHORTPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_ICEPALACE_SMALLROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Livingroom.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_MOOD_HEAVEN.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_MOOD_HELL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_MOOD_MEMORY.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Mountains.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_None.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_OUTDOORS_BACKYARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_OUTDOORS_CREEK.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_OUTDOORS_DEEPCANYON.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_OUTDOORS_ROLLINGPLAINS.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_OUTDOORS_VALLEY.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PIPE_LARGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PIPE_LONGTHIN.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PIPE_RESONANT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PIPE_SMALL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PREFAB_CARAVAN.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PREFAB_OUTHOUSE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PREFAB_PRACTISEROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PREFAB_SCHOOLROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_PREFAB_WORKSHOP.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_PaddedCell.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Parkinglot.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Psychotic.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Quarry.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Room.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SMALLWATERROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_ALCOVE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_CUPBOARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_HALL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_LARGEROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_LONGPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_MEDIUMROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_SHORTPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPACESTATION_SMALLROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPORT_EMPTYSTADIUM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPORT_FULLSTADIUM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPORT_GYMNASIUM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPORT_SMALLSWIMMINGPOOL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPORT_SQUASHCOURT.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_SPORT_STADIUMTANNOY.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Sewerpipe.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_StoneCorridor.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Stoneroom.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\EFFECT_Underwater.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_ALCOVE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_COURTYARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_CUPBOARD.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_HALL.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_LARGEROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_LONGPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_MEDIUMROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_SHORTPASSAGE.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\EFFECT_WOODEN_SMALLROOM.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\FearSpot.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\LatentScriptedAction.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\MessageTextureClient.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\PressureVolume.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\RedirectionTrigger.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\RockingSkyZoneInfo.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ScaledSprite.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ScriptedAction.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ScriptedController.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\ScriptedSequence.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ScriptedTrigger.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ScriptedTriggerController.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\SpectatorCam.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Spotlight.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\Sunlight.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\TeamTrigger.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\TriggerLight.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\TriggeredCondition.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\TriggeredPlayerStart.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\Classes\ViewShaker.uc">
+      <Filter>Classes</Filter>
+    </None>
+    <None Include="..\classes\WaterVolume.uc">
+      <Filter>Classes</Filter>
+    </None>
+  </ItemGroup>
+</Project>

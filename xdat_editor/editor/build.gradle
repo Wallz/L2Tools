@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'acmi.l2.clientmod.xdat.XdatEditor'
+
+dependencies {
+    compile project(':commons:io')
+    compile project(':commons:l2resources')
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '8.40.11'
+    compile group: 'org.codehaus.groovy', name: 'groovy', version: "2.4.7"
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.2'
+    runtime project(':schema')
+}
+
+jar {
+    manifest {
+        attributes 'Version': parent.version,
+                'Main-Class': mainClassName,
+                'Class-Path': configurations.runtime.collect { it.name }.join(' ')
+    }
+}

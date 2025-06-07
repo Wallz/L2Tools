@@ -1,0 +1,16 @@
+Native
+NoExport
+EditInLineNew
+NotEditInLineNew
+Placeable
+NotPlaceable
+NativeReplication
+ExportStructs
+DependsOn
+PerObjectConfig
+Abstract
+Guid
+Transient
+Localized
+Config
+SafeReplace
