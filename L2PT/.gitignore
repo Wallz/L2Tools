@@ -1,0 +1,9 @@
+# Intellij Idea
+.idea/
+
+# Gradle
+.gradle/
+build/
+
+# Mac OS
+.DS_Store
