@@ -1,0 +1,40 @@
+fragment_program Volume/VolumeFP cg
+{
+  source Volume.cg
+  entry_point main_fp
+  profiles ps_1_1 arbfp1
+}
+
+material Volume/Blocking
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_write off
+
+      fragment_program_ref Volume/VolumeFP
+      {
+        param_named color float3 1.0 0.0 0.0
+      }
+    }
+  }
+}
+
+material Volume/Water
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_write off
+
+      fragment_program_ref Volume/VolumeFP
+      {
+        param_named color float3 0.0 0.0 1.0
+      }
+    }
+  }
+}
